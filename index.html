@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>咕嘎AI漫剧 · 图文教程合集</title>
+<style>
+:root{--bg:#0d0f13;--panel:#171c26;--line:#252d3b;--line2:#313b4d;--txt:#e8edf5;--txt2:#9aa7ba;--txt3:#6b7889;
+--accent:#ff8a1f;--accent2:#ffb257;--accent-bg:rgba(255,138,31,.14);--blue:#4c9bff;--blue-bg:rgba(76,155,255,.14);
+--ok:#3ecf8e;--ok-bg:rgba(62,207,142,.14);--violet:#a78bfa}
+*{box-sizing:border-box}
+body{margin:0;background:
+  radial-gradient(1100px 650px at 10% -10%,rgba(255,138,31,.12),transparent 60%),
+  radial-gradient(900px 600px at 90% 0%,rgba(76,155,255,.10),transparent 55%),var(--bg);
+  color:var(--txt);font-family:"PingFang SC","Microsoft YaHei","Segoe UI",system-ui,sans-serif;line-height:1.85;font-size:15px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px 90px}
+header{padding:70px 0 40px;border-bottom:1px solid var(--line);margin-bottom:44px}
+.badge{display:inline-block;padding:5px 13px;border-radius:999px;font-size:12.5px;border:1px solid var(--line2);color:var(--txt2);background:var(--panel);margin:0 8px 8px 0}
+.badge.hot{color:var(--accent2);border-color:rgba(255,138,31,.45);background:var(--accent-bg)}
+.badge.ok{color:var(--ok);border-color:rgba(62,207,142,.4);background:var(--ok-bg)}
+h1{font-size:clamp(30px,4.4vw,46px);line-height:1.25;margin:14px 0 12px;letter-spacing:-.5px}
+h1 span{background:linear-gradient(95deg,var(--accent),#ffd08a);-webkit-background-clip:text;background-clip:text;color:transparent}
+.sub{color:var(--txt2);font-size:16.5px;max-width:760px;margin:0}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
+a.card{display:block;text-decoration:none;color:inherit;background:var(--panel);border:1px solid var(--line);
+  border-radius:14px;padding:22px 24px;transition:.22s}
+a.card:hover{border-color:rgba(255,138,31,.55);transform:translateY(-3px);box-shadow:0 18px 40px rgba(0,0,0,.5)}
+a.card .num{color:var(--accent2);font-weight:800;font-size:13px;letter-spacing:1px}
+a.card h2{margin:6px 0 8px;font-size:20px;color:var(--txt)}
+a.card p{margin:0;color:var(--txt2);font-size:14px;line-height:1.75}
+a.card .tags{margin-top:12px;color:var(--txt3);font-size:12.5px}
+.note{margin-top:44px;background:var(--blue-bg);border-left:3px solid var(--blue);border-radius:0 10px 10px 0;padding:16px 20px;color:var(--txt)}
+.foot{margin-top:60px;padding-top:24px;border-top:1px solid var(--line);color:var(--txt3);font-size:13px;text-align:center}
+a.btn{display:inline-block;margin-top:16px;padding:9px 18px;border-radius:10px;background:var(--accent-bg);color:var(--accent2);
+  text-decoration:none;border:1px solid rgba(255,138,31,.4);font-size:14px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <span class="badge hot">● 咕嘎AI漫剧 · Guga Studio</span>
+  <span class="badge ok">深色界面实拍</span>
+  <span class="badge">图文教程合集 · 6 册</span>
+  <h1>咕嘎AI漫剧 <span>图文教程合集</span></h1>
+  <p class="sub">从 AI 服务配置到短剧导演台、八大工作台、常用工具、小说工作台与素材库 —— 全部界面图取自软件真实运行环境（2560×1400 宽屏、深色模式），步骤与字段与软件实际一致。</p>
+</header>
+
+<div class="grid">
+  <a class="card" href="00-ai-service.html">
+    <div class="num">00</div><h2>AI 服务配置</h2>
+    <p>设置 → 基础 → AI 服务：ComfyUI 一键配置、手动模板接入中转站、文本/图片/视频三类能力、模型与优先级、连通性测试，以及深色主题的开启位置。</p>
+    <div class="tags">9 张图 · 10 章</div>
+  </a>
+  <a class="card" href="01-drama-console.html">
+    <div class="num">01</div><h2>短剧导演台</h2>
+    <p>项目库 → 项目详情 → 单集工作台：新建项目与画幅比例锁定、剧集与素材库、四步流水线（原文改写 / 角色场景道具 / 分镜视频 / 成片合成）。</p>
+    <div class="tags">14 张图 · 14 章</div>
+  </a>
+  <a class="card" href="02-workbenches.html">
+    <div class="num">02</div><h2>八大工作台</h2>
+    <p>武打助手（专业工作台）、武打助手提示词版、文戏助手、多图舞蹈、数字人、产品 PV、口播·字幕转视频、口播·数字人口播。</p>
+    <div class="tags">12 张图 · 11 章</div>
+  </a>
+  <a class="card" href="03-common-tools.html">
+    <div class="num">03</div><h2>常用工具</h2>
+    <p>本地角色助手、qwen2.1 图像编辑器、视频画质增强与 v2：参数逐项说明、显存档位建议、生成记录与素材库互通、VIP 功能边界。</p>
+    <div class="tags">11 张图 · 8 章</div>
+  </a>
+  <a class="card" href="04-novel-desk.html">
+    <div class="num">04</div><h2>小说工作台</h2>
+    <p>小说PLUS 四套引擎：AI_NovelGenerator（记忆库）、Long-Novel-GPT（层级流水线）、OpenWrite（正史分离）、AI小说家（滑动窗口），含 192 个教程模板用法。</p>
+    <div class="tags">6 张图 · 8 章</div>
+  </a>
+  <a class="card" href="05-asset-library.html">
+    <div class="num">05</div><h2>素材库</h2>
+    <p>按日期 / 翻页浏览 / 角色音色三种视图，四维筛选、卡片操作、发送到剧集、收藏夹、上传与导入导出备份。</p>
+    <div class="tags">11 张图 · 10 章</div>
+  </a>
+</div>
+
+<div class="note">
+  <b>使用建议：</b>每一册都是独立网页，可直接双击打开阅读（HTML 版），同目录的 <code>.md</code> 为纯文本版，便于二次编辑。页面内图片均使用相对路径，整个文件夹一起带走即可离线查看。
+</div>
+
+<div class="foot">咕嘎AI漫剧（Guga Studio）· 图文教程合集　|　界面截图取自本机真实运行环境（深色模式）</div>
+</div>
+</body>
+</html>

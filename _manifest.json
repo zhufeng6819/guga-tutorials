@@ -1,0 +1,112 @@
+[
+  {
+    "dir": "00服务配置",
+    "slug": "00-ai",
+    "html": "咕嘎AI漫剧-AI服务配置图文教程.html",
+    "base": "00-ai-service",
+    "images": [
+      "00-ai-01.png",
+      "00-ai-02.png",
+      "00-ai-03.png",
+      "00-ai-04.png",
+      "00-ai-05.png",
+      "00-ai-06.png",
+      "00-ai-07.png",
+      "00-ai-08.png",
+      "00-ai-09.png"
+    ]
+  },
+  {
+    "dir": "01短剧导演台",
+    "slug": "01-drama",
+    "html": "咕嘎AI漫剧-短剧导演台图文教程.html",
+    "base": "01-drama-console",
+    "images": [
+      "01-drama-01.png",
+      "01-drama-02.png",
+      "01-drama-03.png",
+      "01-drama-04.png",
+      "01-drama-05.png",
+      "01-drama-06.png",
+      "01-drama-07.png",
+      "01-drama-08.png",
+      "01-drama-09.png",
+      "01-drama-10.png",
+      "01-drama-11.png",
+      "01-drama-12.png",
+      "01-drama-13.png",
+      "01-drama-14.png"
+    ]
+  },
+  {
+    "dir": "02八大工作台",
+    "slug": "02-wb",
+    "html": "咕嘎AI漫剧-八大工作台图文教程.html",
+    "base": "02-workbenches",
+    "images": [
+      "02-wb-01.png",
+      "02-wb-02.png",
+      "02-wb-03.png",
+      "02-wb-04.png",
+      "02-wb-05.png",
+      "02-wb-06.png",
+      "02-wb-07.png",
+      "02-wb-08.png",
+      "02-wb-09.png",
+      "02-wb-10.png",
+      "02-wb-11.png",
+      "02-wb-12.png"
+    ]
+  },
+  {
+    "dir": "03常用工具",
+    "slug": "03-tools",
+    "html": "咕嘎AI漫剧-常用工具图文教程.html",
+    "base": "03-common-tools",
+    "images": [
+      "03-tools-01.png",
+      "03-tools-02.png",
+      "03-tools-03.png",
+      "03-tools-04.png",
+      "03-tools-05.png",
+      "03-tools-06.png",
+      "03-tools-07.png",
+      "03-tools-08.png",
+      "03-tools-09.png",
+      "03-tools-10.png"
+    ]
+  },
+  {
+    "dir": "04小说工具",
+    "slug": "04-novel",
+    "html": "咕嘎AI漫剧-小说工作台图文教程.html",
+    "base": "04-novel-desk",
+    "images": [
+      "04-novel-01.png",
+      "04-novel-02.png",
+      "04-novel-03.png",
+      "04-novel-04.png",
+      "04-novel-05.png",
+      "04-novel-06.png"
+    ]
+  },
+  {
+    "dir": "05素材库",
+    "slug": "05-lib",
+    "html": "咕嘎AI漫剧-素材库图文教程.html",
+    "base": "05-asset-library",
+    "images": [
+      "05-lib-01.png",
+      "05-lib-02.png",
+      "05-lib-03.png",
+      "05-lib-04.png",
+      "05-lib-05.png",
+      "05-lib-06.png",
+      "05-lib-07.png",
+      "05-lib-08.png",
+      "05-lib-09.png",
+      "05-lib-10.png",
+      "05-lib-11.png"
+    ]
+  }
+]

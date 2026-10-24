@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>咕嘎AI漫剧 · 八大工作台图文教程</title>
+<style>
+:root{
+  --bg:#0d0f13; --panel:#171c26; --panel2:#1e2531;
+  --line:#252d3b; --line2:#313b4d;
+  --txt:#e8edf5; --txt2:#9aa7ba; --txt3:#6b7889;
+  --accent:#ff8a1f; --accent2:#ffb257; --accent-bg:rgba(255,138,31,.14);
+  --ok:#3ecf8e; --ok-bg:rgba(62,207,142,.14);
+  --err:#ff6b6b; --err-bg:rgba(255,107,107,.14);
+  --blue:#4c9bff; --blue-bg:rgba(76,155,255,.14);
+  --radius:14px;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:
+    radial-gradient(1200px 700px at 12% -8%, rgba(255,138,31,.10), transparent 60%),
+    radial-gradient(900px 600px at 92% 4%, rgba(76,155,255,.08), transparent 55%),
+    var(--bg);
+  color:var(--txt);
+  font-family:"PingFang SC","Microsoft YaHei","Segoe UI",system-ui,sans-serif;
+  font-size:15px; line-height:1.85; -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px 100px}
+header.hero{
+  margin:0 -24px 0;padding:64px 24px 52px;
+  background:linear-gradient(180deg,rgba(255,138,31,.10),transparent 70%);
+  border-bottom:1px solid var(--line);
+}
+.hero-inner{max-width:1180px;margin:0 auto}
+.badge-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:18px}
+.badge{display:inline-flex;align-items:center;gap:6px;padding:5px 13px;border-radius:999px;
+  font-size:12.5px;letter-spacing:.4px;border:1px solid var(--line2);color:var(--txt2);background:var(--panel)}
+.badge.hot{color:var(--accent2);border-color:rgba(255,138,31,.45);background:var(--accent-bg)}
+.badge.ok{color:var(--ok);border-color:rgba(62,207,142,.4);background:var(--ok-bg)}
+.badge.blue{color:var(--blue);border-color:rgba(76,155,255,.4);background:var(--blue-bg)}
+h1{font-size:clamp(30px,4.4vw,46px);line-height:1.25;margin:0 0 14px;letter-spacing:-.5px}
+h1 .grad{background:linear-gradient(95deg,var(--accent),#ffd08a);-webkit-background-clip:text;background-clip:text;color:transparent}
+.sub{color:var(--txt2);font-size:16.5px;max-width:880px;margin:0 0 26px}
+.meta-row{display:flex;flex-wrap:wrap;gap:22px;color:var(--txt3);font-size:13.5px}
+.meta-row b{color:var(--txt2);font-weight:600}
+nav.toc{
+  background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+  padding:22px 26px;margin:34px 0 46px;display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:8px 26px;
+}
+nav.toc h4{margin:0 0 12px;font-size:13px;letter-spacing:1.5px;color:var(--txt3);text-transform:uppercase;grid-column:1/-1}
+nav.toc a{color:var(--txt2);text-decoration:none;font-size:14px;display:block;padding:5px 10px;border-radius:8px;border-left:2px solid transparent}
+nav.toc a:hover{color:var(--accent2);background:var(--accent-bg);border-left-color:var(--accent)}
+section{margin:0 0 60px;scroll-margin-top:20px}
+.sec-head{display:flex;align-items:center;gap:14px;margin:0 0 18px}
+.sec-num{flex:0 0 auto;width:40px;height:40px;border-radius:11px;display:grid;place-items:center;
+  background:var(--accent-bg);color:var(--accent2);font-weight:700;font-size:16px;border:1px solid rgba(255,138,31,.35)}
+h2{font-size:25px;margin:0;letter-spacing:-.2px}
+.lead{color:var(--txt2);margin:0 0 26px;padding-left:54px;font-size:15px}
+@media(max-width:640px){.lead{padding-left:0}}
+figure{margin:0 0 22px}
+.shot{display:block;width:100%;border:1px solid var(--line2);border-radius:var(--radius);
+  box-shadow:0 18px 48px rgba(0,0,0,.55);background:var(--panel);transition:.22s}
+.shot:hover{border-color:rgba(255,138,31,.55);transform:translateY(-2px)}
+.shot-sm{width:100%;max-width:620px;margin:0 auto}
+figcaption{margin-top:12px;color:var(--txt3);font-size:13.5px;text-align:center}
+figcaption b{color:var(--txt2)}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:22px 24px;margin:0 0 22px}
+.card h3{margin:0 0 12px;font-size:18px}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:16px}
+.tip{border-left:3px solid var(--blue);background:var(--blue-bg);padding:16px 20px;border-radius:0 10px 10px 0;margin:0 0 20px;color:var(--txt)}
+.tip.warn{border-left-color:var(--accent);background:var(--accent-bg)}
+.tip.err{border-left-color:var(--err);background:var(--err-bg)}
+.tip.ok{border-left-color:var(--ok);background:var(--ok-bg)}
+.tip b{color:#fff}
+ul,ol{padding-left:22px;margin:0 0 16px}
+li{margin:7px 0}
+li::marker{color:var(--accent)}
+table{width:100%;border-collapse:collapse;margin:0 0 22px;font-size:14px;background:var(--panel);border-radius:12px;overflow:hidden}
+th,td{padding:12px 14px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:var(--panel2);color:var(--txt2);font-weight:600;font-size:13.5px}
+tr:last-child td{border-bottom:none}
+td code,kbd,code{background:#0b0e13;border:1px solid var(--line2);border-radius:6px;padding:1px 7px;font-size:13px;color:var(--accent2);
+  font-family:"Cascadia Code",Consolas,monospace}
+.num-list{counter-reset:st;list-style:none;padding-left:0}
+.num-list>li{position:relative;padding-left:36px;margin:12px 0}
+.num-list>li::before{counter-increment:st;content:counter(st);position:absolute;left:0;top:4px;width:24px;height:24px;border-radius:8px;
+  background:var(--accent-bg);color:var(--accent2);font-size:12.5px;display:grid;place-items:center;font-weight:700}
+.flow{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 22px;counter-reset:f}
+.flow div{flex:1 1 210px;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+.flow div::before{counter-increment:f;content:counter(f);display:inline-grid;place-items:center;width:26px;height:26px;border-radius:9px;
+  background:var(--accent);color:#1a1206;font-weight:800;font-size:14px;margin-right:10px}
+.flow b{display:block;margin-bottom:4px}
+.flow span{color:var(--txt2);font-size:13.5px}
+.wbgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin:0 0 22px}
+.wb{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+.wb b{display:block;color:var(--accent2);font-size:15.5px;margin-bottom:6px}
+.wb p{margin:0;color:var(--txt2);font-size:13.8px;line-height:1.75}
+.wb .path{color:var(--txt3);font-size:12.5px;margin-top:8px;font-family:Consolas,monospace}
+.checklist{list-style:none;padding:0}
+.checklist li{padding-left:34px;position:relative;margin:11px 0}
+.checklist li::before{content:"✓";position:absolute;left:0;top:0;width:22px;height:22px;border-radius:7px;
+  background:var(--ok-bg);color:var(--ok);font-size:13px;display:grid;place-items:center;font-weight:700}
+.foot{margin-top:70px;padding-top:26px;border-top:1px solid var(--line);color:var(--txt3);font-size:13px;text-align:center}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div class="badge-row">
+      <span class="badge hot">● 咕嘎AI漫剧 · Guga Studio</span>
+      <span class="badge">图文教程</span>
+      <span class="badge ok">深色界面</span>
+      <span class="badge blue">顶部导航 → 秀场</span>
+    </div>
+    <h1>八大工作台<span class="grad">图文教学</span></h1>
+    <p class="sub">
+      咕嘎AI漫剧的「秀场」里藏着 8 个专业工作台：<b>武打助手（专业工作台）</b>、<b>武打助手提示词版本</b>、<b>文戏助手</b>、
+      <b>多图舞蹈</b>、<b>数字人</b>、<b>产品 PV</b>、<b>口播·字幕转视频</b>、<b>口播·数字人口播</b>。
+      本教程逐个讲清：入口在哪、每个表单填什么、怎么出片、参数怎么调。所有界面图均取自软件真实运行界面（2560×1400 宽屏、深色模式）。
+    </p>
+    <div class="meta-row">
+      <span>适用版本：<b>咕嘎AI漫剧（Guga Studio）V3</b></span>
+      <span>入口：<b>顶部导航 → 秀场</b></span>
+      <span>阅读时长：<b>约 15 分钟</b></span>
+      <span>前置条件：<b>AI 服务已配置、显存 8G 起</b></span>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+<nav class="toc">
+  <h4>目录</h4>
+  <a href="#s0">0 · 秀场与八大工作台地图</a>
+  <a href="#s1">1 · 武打助手（专业工作台）</a>
+  <a href="#s2">2 · 武打助手提示词版本</a>
+  <a href="#s3">3 · 文戏助手</a>
+  <a href="#s4">4 · 多图舞蹈</a>
+  <a href="#s5">5 · 数字人</a>
+  <a href="#s6">6 · 产品 PV 工作台</a>
+  <a href="#s7">7 · 口播助手①：字幕转视频</a>
+  <a href="#s8">8 · 口播助手②：数字人口播</a>
+  <a href="#s9">9 · 共用表单与参数手册</a>
+  <a href="#s10">10 · 常见问题与检查清单</a>
+</nav>
+
+<!-- 0 -->
+<section id="s0">
+  <div class="sec-head"><div class="sec-num">0</div><h2>秀场与八大工作台地图</h2></div>
+  <p class="lead">所有工作台都在顶部导航「秀场」里，分两层：一级选领域，二级选具体工作台。</p>
+
+  <figure>
+    <img class="shot" src="02-wb-01.png" alt="秀场工作台导航">
+    <figcaption><b>图 1</b>　秀场页：上排一级领域（打戏 / 文戏 / 舞蹈 / 数字人 / 产品 / 口播 / cos），下排二级工作台</figcaption>
+  </figure>
+
+  <div class="wbgrid">
+    <div class="wb"><b>① 武打助手</b><p>全屏专业工作台：Skill 市场 + 角色/场景库 + 镜头编排 + 分镜时间线 + 一键成片</p><div class="path">秀场 → 打戏助手 → 专业工作台</div></div>
+    <div class="wb"><b>② 武打助手提示词版本</b><p>整段 H3 提示词 → 自动拆段 → 逐段生成 → 自动拼片，参考图+参考音频驱动</p><div class="path">秀场 → 打戏助手 → 武打助手提示词版本</div></div>
+    <div class="wb"><b>③ 文戏助手</b><p>剧本一键分镜，对白驱动分段连拍，角色声线锁定，台词可转配音</p><div class="path">秀场 → 文戏助手</div></div>
+    <div class="wb"><b>④ 多图舞蹈</b><p>首帧 + 多张参考图共同锚定舞者，整曲编舞分段接力</p><div class="path">秀场 → 舞蹈助手 → 多图舞蹈</div></div>
+    <div class="wb"><b>⑤ 数字人</b><p>上传人物图 + 口播/演唱音频，长音频自动分段，唇形逐段同步</p><div class="path">秀场 → 数字人</div></div>
+    <div class="wb"><b>⑥ 产品 PV</b><p>MV 六段式导演提示词，首尾帧强控，成片音乐一致</p><div class="path">秀场 → 产品助手</div></div>
+    <div class="wb"><b>⑦ 字幕转视频</b><p>字幕/文案驱动的手绘涂鸦·图形动效短片</p><div class="path">秀场 → 口播助手 → 字幕转视频</div></div>
+    <div class="wb"><b>⑧ 数字人口播</b><p>人物形象 + 口播音频驱动的 MG 图形风口播视频</p><div class="path">秀场 → 口播助手 → 数字人口播</div></div>
+  </div>
+
+  <div class="tip">
+    <b>两种工作台形态：</b>
+    <ul style="margin:8px 0 0">
+      <li><b>全屏专业工作台</b>（武打助手）：进入后独占屏幕，左中右 + 底部分镜时间线四区布局。</li>
+      <li><b>项目式工作台</b>（其余 7 个）：统一为「新建项目 → 分镜工作台」两步，表单不同、分镜工作台结构相同。</li>
+    </ul>
+  </div>
+
+  <div class="flow">
+    <div><b>新建项目</b><span>填标题 / 剧本 / 风格 / 分段数 / 参数 / 参考图</span></div>
+    <div><b>AI 分镜</b><span>自动把梗概拆成可拍的分段提示词</span></div>
+    <div><b>分段生成</b><span>逐段生成视频，可单独重试</span></div>
+    <div><b>拼接成片</b><span>一键拼接输出完整视频</span></div>
+  </div>
+</section>
+
+<!-- 1 -->
+<section id="s1">
+  <div class="sec-head"><div class="sec-num">1</div><h2>武打助手（专业工作台）</h2></div>
+  <p class="lead">最重的一个工作台，全屏四区布局，适合一条一条精修打斗镜头。</p>
+
+  <figure>
+    <img class="shot" src="02-wb-02.png" alt="武打助手专业工作台">
+    <figcaption><b>图 2</b>　武打助手全屏工作台：左侧 Skill 库，中央镜头预览，右侧镜头描述与动作镜头编排，底部分镜列表</figcaption>
+  </figure>
+
+  <div class="card">
+    <h3>四个区域</h3>
+    <table>
+      <thead><tr><th style="width:130px">区域</th><th>内容</th></tr></thead>
+      <tbody>
+        <tr><td><b>左栏</b></td><td><b>Skill 库</b>（兵器对决 / 拳脚格斗 / 武侠轻功 / 现代近战等，每个 Skill 绑定招式库与特效语汇）、<b>角色库</b>、<b>场景库</b>；右上角「Skill 市场 / 保存 / 导出视频」</td></tr>
+        <tr><td><b>中栏</b></td><td><b>镜头预览</b>：显示当前镜头画面与左右翻页，未生成时提示「该镜头还没有画面——先在下方生成视频，或在左侧设置首帧资产」</td></tr>
+        <tr><td><b>右栏</b></td><td><b>镜头描述</b>（自动装配，可「恢复自动」）、<b>动作与镜头</b>（招式、运镜、节奏、时长、首帧、种子数、蓄力/出招/碰撞/反馈四段文本）、<b>台词与配音</b></td></tr>
+        <tr><td><b>底栏</b></td><td><b>分镜列表</b>：每镜一张缩略卡，右侧「＋ 添加镜头」，右下角橙色 <b>AI 全自动生成</b></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <ol class="num-list">
+    <li>秀场 → <b>打戏助手</b> → 子标签 <b>专业工作台（实验版）</b> → 点 <b>进入全屏工作台</b>。</li>
+    <li>顶部流程条走五步：<b>创意输入 → Skill 选择 → 角色场景 → 分镜生成 → 预览导出</b>。</li>
+    <li>在 <b>Skill 库</b>选一个招式体系（如「兵器对决」），系统会绑定对应招式库与推荐引擎。<b>换 Skill 会重置分镜</b>，所以先选 Skill 再编排镜头。</li>
+    <li>右栏调好动作与镜头后，点 <b>生成本镜 ×2</b>（多种子挑选）或底栏 <b>AI 全自动生成</b> 一把生成全部。</li>
+    <li>满意后点右上角 <b>导出视频</b>。</li>
+  </ol>
+
+  <div class="tip warn">
+    <b>实战经验</b>：先把<b>节奏</b>设为「快速」、<b>时长</b> 5 秒左右出草稿；每个镜头生成 2 条候选，满意就「选用」，最后「拼接成片」（至少 2 个镜头才能拼）。画面飘或人脸崩，把「种子数」调大挑选，或用左侧角色库里的参考图做<b>首帧</b>锚定。
+  </div>
+</section>
+
+<!-- 2 -->
+<section id="s2">
+  <div class="sec-head"><div class="sec-num">2</div><h2>武打助手提示词版本</h2></div>
+  <p class="lead">不想一镜一镜点？用这一版：写一整段提示词，交给软件自动拆段、逐段生成、自动拼片。</p>
+
+  <figure>
+    <img class="shot" src="02-wb-03.png" alt="武打助手提示词版本">
+    <figcaption><b>图 3</b>　提示词版本：左侧整段提示词 + 参考素材，右侧提示词版项目列表（分段进度、状态）</figcaption>
+  </figure>
+
+  <ol class="num-list">
+    <li>秀场 → <b>打戏助手</b> → 子标签 <b>武打助手提示词版本</b>。</li>
+    <li>左栏填 <b>项目标题</b>（留空自动命名）。</li>
+    <li><b>整段提示词</b>：按 <code>[Shot 1]</code>、<code>[Shot 2]</code> 标记每一段；末尾补 <code>overall_soundscape</code> / <code>non_diegetic_music</code> 两行音画说明。点 <b>填入示例</b> 可先看标准写法。</li>
+    <li><b>参考素材</b>：上传参考图（最多 4 张，第 1 张为主角色，提示词里用 <code>&lt;Picture 1&gt;</code> 引用）与参考音频（最多 3 条，用于克隆音色）。</li>
+    <li>点 <b>解析预览</b> 确认拆段结果，再点 <b>一键生成成片</b>。</li>
+  </ol>
+
+  <div class="tip ok">
+    <b>工作原理</b>：软件按时间轴把整段提示词切成若干分段，每段挂同一组参考图与参考音频逐段生成，段与段之间走 <b>latent 接力</b>，因此人物与动作风格不漂移，最后自动拼成一条片子。
+  </div>
+  <div class="tip err">
+    <b>注意</b>：软件不会把整段提示词按时间轴硬切来「生成视频」，而是<b>自动按时间轴拆分成多段</b>，每段按其时长单独生成后再拼接。因此分段数越多、每段越短，显存与时间越省。
+  </div>
+</section>
+
+<!-- 3 -->
+<section id="s3">
+  <div class="sec-head"><div class="sec-num">3</div><h2>文戏助手</h2></div>
+  <p class="lead">对话戏专用：剧本一键分镜，对白驱动分段连拍，角色声线全程锁定。</p>
+
+  <figure>
+    <img class="shot" src="02-wb-04.png" alt="文戏助手新建项目">
+    <figcaption><b>图 4</b>　文戏助手「新建项目」页：左表单 + 中 AI 细化剧本梗概 + 右案例模板与我的项目</figcaption>
+  </figure>
+
+  <figure>
+    <img class="shot" src="02-wb-05.png" alt="文戏分镜工作台">
+    <figcaption><b>图 5</b>　分镜工作台：分段提示词 + 成片预览，右侧 AI 分段微调 / 台词转配音 / 智能体格式转换</figcaption>
+  </figure>
+
+  <ol class="num-list">
+    <li>秀场 → <b>文戏助手</b>，左栏标题下方写着「打戏分镜·分段接力连拍 / 剧本一键分镜·对白口型」。</li>
+    <li><b>剧本 / 梗概</b>：写完整剧情、人物与关键情节。也可点 <b>对话式创建</b>，回答「这段片子讲什么 / 角色靠什么锚定 / 什么风格 / 节奏规格」四问，AI 直接拆成分镜。</li>
+    <li>中栏 <b>AI 细化剧本梗概</b>：填「调整方向」（如「更热血 / 加一个反转 / 场景改到雨夜」），点 <b>AI 细化</b> 扩写成逐段可拍的完整梗概，再 <b>保存到左侧</b> 回填。</li>
+    <li><b>案例模板</b>：点任一模板的「使用」自动带上参考图（如《雨夜 thriller》暗巷雨夜搏命、蒙面黑衣女剑客冷面厮杀），也可 <b>一键替换成参考图</b> 把梗概里的角色换成你的参考图角色。</li>
+    <li>设好分段数 / 每段秒数 / 宽高比 / 分辨率档位，点 <b>创建项目</b>（勾选「创建后自动 AI 分镜」）。</li>
+    <li>进入 <b>分镜工作台</b>：分段卡片显示「人物锚定 / 声线定义 / 站位轴线」，可用 <b>AI 分段微调</b>、<b>台词转配音</b>、<b>智能体格式转换</b>，最后 <b>连续生成全部</b> → <b>拼接成片</b>。</li>
+  </ol>
+
+  <div class="tip">
+    <b>台词转配音</b>：选一段 → 输入台词（每行一句，按行对齐时间轴）→ 选音色 → <b>生成配音</b>（提取时间轴 → TTS → 替换本段音轨，首次使用需下载配音模型）。还支持 <b>H3 原生克隆</b>（零额外显存）与 <b>高保真 CosyVoice3</b>（先听后拍）两种方案。
+  </div>
+</section>
+
+<!-- 4 -->
+<section id="s4">
+  <div class="sec-head"><div class="sec-num">4</div><h2>多图舞蹈</h2></div>
+  <p class="lead">整首曲子编舞：首帧 + 多张参考图共同锚定舞者，音轨 1:1 保留，分段接力成片。</p>
+
+  <figure>
+    <img class="shot" src="02-wb-06.png" alt="多图舞蹈新建项目">
+    <figcaption><b>图 6</b>　多图舞蹈「新建项目」页：副标题「多图锚定·整曲齐舞」，参考图上限 9 张，底部为音频（成片音轨 1:1 保留）</figcaption>
+  </figure>
+
+  <ol class="num-list">
+    <li>秀场 → <b>舞蹈助手</b> → 子标签 <b>多图舞蹈</b>。</li>
+    <li>填 <b>口播文案 / 脚本</b>（可选）与 <b>视觉风格</b>。</li>
+    <li><b>参考图（角色/场景锚定）</b>：多图舞蹈最多 <b>9 张</b>，第 1 张为主角色，提示词用 <code>&lt;Picture 1&gt;</code> 引用；再上传 <b>首帧图</b> 锁定开场画面。</li>
+    <li><b>音频</b>：选择音乐文件，成片音轨与原曲 <b>1:1 保留</b>；该工作台<b>必须先上传音频</b>才能创建。</li>
+    <li>设 <b>分段数 / 每段秒数 / 宽高比 / 分辨率档位</b> → <b>创建项目</b>。</li>
+    <li>在分镜工作台里点 <b>连续生成全部</b>，最后 <b>拼接成片</b>；成片自带原曲音轨。</li>
+  </ol>
+
+  <div class="tip ok">
+    <b>案例模板</b>里「多图舞蹈」专属模板很实用：双强合舞（一丝不苟）、人宠共舞（陪我跳）、四喜丸子女团（四猫成团）、祖孙双人广场舞、双机甲斗舞 Battle 等——点「使用」即带入参考图与分段建议。
+  </div>
+</section>
+
+<!-- 5 -->
+<section id="s5">
+  <div class="sec-head"><div class="sec-num">5</div><h2>数字人</h2></div>
+  <p class="lead">上传人物图 + 口播/演唱音频，长音频自动分段，唇形逐段精确同步。</p>
+
+  <figure>
+    <img class="shot" src="02-wb-07.png" alt="数字人新建项目">
+    <figcaption><b>图 7</b>　数字人「新建项目」页：副标题「口播/演唱·长音频数字人」</figcaption>
+  </figure>
+
+  <figure>
+    <img class="shot" src="02-wb-08.png" alt="数字人分镜工作台">
+    <figcaption><b>图 8</b>　数字人分镜工作台：分段提示词、音频与成片预览</figcaption>
+  </figure>
+
+  <ol class="num-list">
+    <li>秀场 → <b>数字人</b>。</li>
+    <li>填标题与 <b>口播文稿 / 剧本</b>（口播稿或歌词）。</li>
+    <li>上传 <b>参考图</b>（人物形象，最多 4 张，第 1 张为主角）与 <b>首帧图</b>。</li>
+    <li>上传 <b>音频</b>（口播或演唱音频），软件会按音频长度自动分段接力。</li>
+    <li>创建项目 → 分镜工作台 → <b>连续生成全部</b> → <b>拼接成片</b>。</li>
+  </ol>
+
+  <div class="tip warn">
+    <b>数字人最怕两件事：</b>人物走形（提高参考图引导权重或换成更干净的正面图）和口型对不上（检查音频偏移）。文戏/数字人工作台右侧还提供 <b>参考音色（对白音色克隆）</b>，最多 3 个，可为不同角色绑定不同音色。
+  </div>
+</section>
+
+<!-- 6 -->
+<section id="s6">
+  <div class="sec-head"><div class="sec-num">6</div><h2>产品 PV 工作台</h2></div>
+  <p class="lead">带货与产品向专用：MV 六段式导演提示词，首尾帧强控，成片音乐一致。</p>
+
+  <figure>
+    <img class="shot" src="02-wb-09.png" alt="产品PV新建项目">
+    <figcaption><b>图 8</b>　产品助手「新建项目」页：副标题「MV 分镜·首尾帧强控」</figcaption>
+  </figure>
+
+  <figure>
+    <img class="shot" src="02-wb-10.png" alt="PV分镜工作台">
+    <figcaption><b>图 9</b>　PV 分镜工作台：分段提示词、成片预览与右侧三项 AI 工具</figcaption>
+  </figure>
+
+  <ol class="num-list">
+    <li>秀场 → <b>产品助手</b>。</li>
+    <li>写清产品与卖点（<b>剧本 / 梗概</b>），例如「9 号样机实拍、追帧运镜、结尾定格…」的镜头语言。</li>
+    <li>参考图区上传 <b>产品图</b>（内置图库已含「手机 / 耳麦商品图」），首帧图锁定开场。</li>
+    <li>可点 <b>对话式创建</b> 快速起稿，或用 <b>案例模板</b>：国风电子《千灯愿》、街头跑题《不炮》、清新国语《南方来信》、赛博电子《霓虹梦境》、怀旧金曲《老站台》、宠物治愈《毛孩子》。</li>
+    <li>创建后进分镜工作台 → <b>连续生成全部</b> → <b>拼接成片</b>。</li>
+  </ol>
+
+  <div class="tip">
+    <b>首尾帧强控</b>是 PV 的关键：首帧决定开场定格、尾帧决定收尾画面。写梗概时就把这两帧想清楚，能显著减少"产品图变形"。
+  </div>
+</section>
+
+<!-- 7 -->
+<section id="s7">
+  <div class="sec-head"><div class="sec-num">7</div><h2>口播助手①：字幕转视频</h2></div>
+  <p class="lead">字幕 / 文案驱动的手绘涂鸦、图形动效短片，适合口播条、知识类短视频。</p>
+
+  <figure>
+    <img class="shot" src="02-wb-11.png" alt="口播字幕转视频">
+    <figcaption><b>图 10</b>　字幕转视频「新建项目」页：副标题「字幕文案·图形动效」</figcaption>
+  </figure>
+
+  <ol class="num-list">
+    <li>秀场 → <b>口播助手</b> → 子标签 <b>字幕转视频</b>。</li>
+    <li>把 <b>口播文稿 / 字幕</b> 贴进「剧本 / 梗概」框，一行一句最佳。</li>
+    <li>选 <b>视觉风格</b>（可留空由 AI 决定）与 <b>分段数 / 每段秒数</b>——字幕类建议每段 3–6 秒，一段一句。</li>
+    <li>参考图可选；<b>创建后自动 AI 分镜</b> 会按文稿逐段生成图形动效提示词。</li>
+    <li>分镜工作台 → <b>连续生成全部</b> → <b>拼接成片</b>。</li>
+  </ol>
+</section>
+
+<!-- 8 -->
+<section id="s8">
+  <div class="sec-head"><div class="sec-num">8</div><h2>口播助手②：数字人口播</h2></div>
+  <p class="lead">人物形象 + 口播音频驱动的 MG 图形风口播视频，做知识分享与带货口播。</p>
+
+  <figure>
+    <img class="shot" src="02-wb-12.png" alt="口播数字人口播">
+    <figcaption><b>图 11</b>　数字人口播「新建项目」页：副标题「MG 图形风·数字人口播」</figcaption>
+  </figure>
+
+  <ol class="num-list">
+    <li>秀场 → <b>口播助手</b> → 子标签 <b>数字人口播</b>。</li>
+    <li>填口播文稿（可选）与视觉风格。</li>
+    <li>上传 <b>参考图</b>（数字人形象）与 <b>音频</b>（你的口播录音），软件按音频自动分段、逐段唇形同步。</li>
+    <li>创建 → 分镜工作台 → <b>连续生成全部</b> → <b>拼接成片</b>。</li>
+  </ol>
+
+  <div class="tip">
+    <b>字幕转视频 vs 数字人口播 怎么选？</b>没有出镜人物、想省事 → <b>字幕转视频</b>；需要真人/数字人形象出镜 → <b>数字人口播</b>。两者共用同一套「新建项目 → 分镜工作台」流程，切换顶部子标签即可。
+  </div>
+</section>
+
+<!-- 9 -->
+<section id="s9">
+  <div class="sec-head"><div class="sec-num">9</div><h2>共用表单与参数手册</h2></div>
+  <p class="lead">除武打助手外，其余 7 个工作台共用同一套「新建项目」表单与分镜工作台，这里一次性讲透。</p>
+
+  <div class="card">
+    <h3>新建项目表单逐字段</h3>
+    <table>
+      <thead><tr><th style="width:140px">字段</th><th>说明</th><th style="width:180px">建议</th></tr></thead>
+      <tbody>
+        <tr><td><b>项目标题</b></td><td>留空自动命名</td><td>写清用途，便于在「我的项目」里找</td></tr>
+        <tr><td><b>剧本 / 梗概</b><br><span style="color:var(--txt3)">口播文稿 / 剧本（可选）</span></td><td>完整剧情、人物与关键情节；文戏/口播类强烈建议填</td><td>写「场景 · 谁对谁 · 怎么收场」</td></tr>
+        <tr><td><b>视觉风格</b></td><td>如「赛博朋克霓虹 / 水墨古风 / 日系动漫」</td><td>与整体分镜风格一致</td></tr>
+        <tr><td><b>分段数</b> / <b>每段秒数</b></td><td>总时长 = 分段数 × 每段秒数</td><td>打戏 5–8 秒，字幕 3–6 秒</td></tr>
+        <tr><td><b>宽高比</b></td><td>21:9 / 16:9 / 4:3 / 1:1 / 3:4 / 9:16 / 自适应</td><td>短视频选 9:16</td></tr>
+        <tr><td><b>分辨率档位</b></td><td>如 544px·960×544；短边 544–768 可调，最高 2K</td><td>12G 显存默认短边 768（16:9 = 1344×768）</td></tr>
+        <tr><td><b>采样步数</b></td><td>8 极速预览 / 20 质量最佳</td><td>免费档上限 8 步</td></tr>
+        <tr><td><b>参考图引导权重</b></td><td>0.999 最稳</td><td>角色漂移降到 0.995 / 0.99；≤0.95 明显弱化贴图</td></tr>
+        <tr><td><b>LoRA 强度</b></td><td>跟随工作台默认最稳</td><td>调大易过饱和</td></tr>
+        <tr><td><b>随机种子 Seed</b></td><td>留空 = 每段随机</td><td>固定种子可复现同画面</td></tr>
+        <tr><td><b>参考图 / 首帧图</b></td><td>第 1 张为主角色，提示词用 <code>&lt;Picture 1&gt;</code> 引用</td><td>多图舞蹈最多 9 张</td></tr>
+        <tr><td><b>音频</b></td><td>成片音轨 1:1 保留</td><td>多图舞蹈、数字人必填</td></tr>
+        <tr><td><b>创建后自动 AI 分镜</b></td><td>创建即自动拆段写提示词</td><td>保持勾选最省事</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <h3>分镜工作台三块面板</h3>
+    <ul style="margin:0">
+      <li><b>左侧分段卡片</b>：每段一条，可编辑「本段梗概」「本段完整 H3 提示词」，改完点生成 / 重试 / 重新生成。</li>
+      <li><b>中段预览</b>：显示该段视频与时长，可设分段时长、填种子。</li>
+      <li><b>右侧三件套</b>：<b>AI 分段微调</b>（对选中段说「改成雨夜、加强打斗」并一键改写）、<b>台词转配音</b>（TTS + 替换音轨）、<b>智能体格式转换</b>（从技能库选分镜智能体统一格式）。</li>
+      <li><b>顶部四个按钮</b>：<b>跳过已有提示词</b>（AI 重新分镜时保留已填提示词）、<b>AI 重新分镜</b>、<b>连续生成全部</b>、<b>拼接成片</b>。</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 10 -->
+<section id="s10">
+  <div class="sec-head"><div class="sec-num">10</div><h2>常见问题与出片检查清单</h2></div>
+
+  <div class="card">
+    <h3>常见问题</h3>
+    <table>
+      <thead><tr><th style="width:170px">现象</th><th>原因与处理</th></tr></thead>
+      <tbody>
+        <tr><td>提示「未找到可用视频模型」</td><td>去 <b>设置 → AI 服务</b> 配置并启用视频服务（或一键写入本地 ComfyUI 配置）</td></tr>
+        <tr><td>提示「本工作台需要先上传音频」</td><td>多图舞蹈 / 数字人 / 数字人口播必须上传音频后才能创建</td></tr>
+        <tr><td>生成中显存溢出</td><td>把<b>分辨率档位</b>降到 544px 短边、<b>采样步数</b>降到 8 步（免费档上限 8 步）</td></tr>
+        <tr><td>人物走形 / 每段长得不一样</td><td>提高参考图引导权重到 0.999，或换更干净的正面参考图；首帧图务必上传</td></tr>
+        <tr><td>口型对不上</td><td>检查音频偏移；数字人优先用「参考音色 + H3 原生克隆」</td></tr>
+        <tr><td>段与段之间风格跳</td><td>别改参考图；确认分段数与每段秒数固定；用「跳过已有提示词」避免重写已调好的段</td></tr>
+        <tr><td>重新分镜把写好的提示词冲掉了</td><td>勾选<b>跳过已有提示词</b>再点「AI 重新分镜」</td></tr>
+        <tr><td>成片拼接失败</td><td>有分段尚未生成成功，先逐段重试再拼接</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <h3>提效技巧</h3>
+    <ul style="margin:0">
+      <li><b>先建项目再改参数</b>：项目创建后所有参数都能在分镜工作台改，改分镜不用重建项目。</li>
+      <li><b>案例模板先行</b>：每个工作台都有 10 个内置模板，点「使用」直接带参考图与分段建议，比从零写省一半时间。</li>
+      <li><b>AI 细化 + AI 分段微调</b>两段式改稿：左边写方向，右边执行，比反复手写提示词快。</li>
+      <li><b>草稿用低档参数</b>：确认分段没问题再切高清档重生成那一段，不要全片重跑。</li>
+      <li><b>武打助手先选 Skill</b>：换 Skill 会重置分镜，顺序别搞反。</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>出片检查清单</h3>
+    <ul class="checklist">
+      <li>设置 → AI 服务中，视频服务已配置且默认模型带 ⭐</li>
+      <li>项目标题、视觉风格、宽高比已按投放平台选定</li>
+      <li>剧本 / 梗概已填写，分段数 × 每段秒数与预期时长一致</li>
+      <li>参考图已上传，第 1 张是主角，首帧图已设置</li>
+      <li>需要音频的工作台已上传音频（音轨 1:1 保留）</li>
+      <li>「AI 细化」后的梗概已保存回左侧</li>
+      <li>分段提示词已逐段检查过，风格与锚定一致</li>
+      <li>全部分段状态为「已完成」，无失败段</li>
+      <li>成片已拼接成功并可播放</li>
+    </ul>
+  </div>
+</section>
+
+<div class="foot">
+  咕嘎AI漫剧（Guga Studio）· 八大工作台图文教程　|　界面截图取自本机真实运行环境（深色模式）<br>
+  文档版本 v1.0　·　实验版功能仍在迭代，以软件实际显示为准
+</div>
+
+</div>
+</body>
+</html>

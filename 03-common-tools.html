@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>咕嘎AI漫剧 · 常用工具图文教程</title>
+<style>
+:root{
+  --bg:#0d0f13; --panel:#171c26; --panel2:#1e2531;
+  --line:#252d3b; --line2:#313b4d;
+  --txt:#e8edf5; --txt2:#9aa7ba; --txt3:#6b7889;
+  --accent:#ff8a1f; --accent2:#ffb257; --accent-bg:rgba(255,138,31,.14);
+  --ok:#3ecf8e; --ok-bg:rgba(62,207,142,.14);
+  --err:#ff6b6b; --err-bg:rgba(255,107,107,.14);
+  --blue:#4c9bff; --blue-bg:rgba(76,155,255,.14);
+  --radius:14px;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:
+    radial-gradient(1200px 700px at 12% -8%, rgba(255,138,31,.10), transparent 60%),
+    radial-gradient(900px 600px at 92% 4%, rgba(76,155,255,.08), transparent 55%),
+    var(--bg);
+  color:var(--txt);
+  font-family:"PingFang SC","Microsoft YaHei","Segoe UI",system-ui,sans-serif;
+  font-size:15px; line-height:1.85; -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px 100px}
+header.hero{
+  margin:0 -24px 0;padding:64px 24px 52px;
+  background:linear-gradient(180deg,rgba(255,138,31,.10),transparent 70%);
+  border-bottom:1px solid var(--line);
+}
+.hero-inner{max-width:1180px;margin:0 auto}
+.badge-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:18px}
+.badge{display:inline-flex;align-items:center;gap:6px;padding:5px 13px;border-radius:999px;
+  font-size:12.5px;letter-spacing:.4px;border:1px solid var(--line2);color:var(--txt2);background:var(--panel)}
+.badge.hot{color:var(--accent2);border-color:rgba(255,138,31,.45);background:var(--accent-bg)}
+.badge.ok{color:var(--ok);border-color:rgba(62,207,142,.4);background:var(--ok-bg)}
+.badge.blue{color:var(--blue);border-color:rgba(76,155,255,.4);background:var(--blue-bg)}
+.badge.gray{color:var(--txt3)}
+h1{font-size:clamp(30px,4.4vw,46px);line-height:1.25;margin:0 0 14px;letter-spacing:-.5px}
+h1 .grad{background:linear-gradient(95deg,var(--accent),#ffd08a);-webkit-background-clip:text;background-clip:text;color:transparent}
+.sub{color:var(--txt2);font-size:16.5px;max-width:880px;margin:0 0 26px}
+.meta-row{display:flex;flex-wrap:wrap;gap:22px;color:var(--txt3);font-size:13.5px}
+.meta-row b{color:var(--txt2);font-weight:600}
+nav.toc{
+  background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+  padding:22px 26px;margin:34px 0 46px;display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:8px 26px;
+}
+nav.toc h4{margin:0 0 12px;font-size:13px;letter-spacing:1.5px;color:var(--txt3);text-transform:uppercase;grid-column:1/-1}
+nav.toc a{color:var(--txt2);text-decoration:none;font-size:14px;display:block;padding:5px 10px;border-radius:8px;border-left:2px solid transparent}
+nav.toc a:hover{color:var(--accent2);background:var(--accent-bg);border-left-color:var(--accent)}
+section{margin:0 0 60px;scroll-margin-top:20px}
+.sec-head{display:flex;align-items:center;gap:14px;margin:0 0 18px}
+.sec-num{flex:0 0 auto;width:40px;height:40px;border-radius:11px;display:grid;place-items:center;
+  background:var(--accent-bg);color:var(--accent2);font-weight:700;font-size:16px;border:1px solid rgba(255,138,31,.35)}
+h2{font-size:25px;margin:0;letter-spacing:-.2px}
+.lead{color:var(--txt2);margin:0 0 26px;padding-left:54px;font-size:15px}
+@media(max-width:640px){.lead{padding-left:0}}
+figure{margin:0 0 22px}
+.shot{display:block;width:100%;border:1px solid var(--line2);border-radius:var(--radius);
+  box-shadow:0 18px 48px rgba(0,0,0,.55);background:var(--panel);transition:.22s}
+.shot:hover{border-color:rgba(255,138,31,.55);transform:translateY(-2px)}
+.shot-sm{width:100%;max-width:620px;margin:0 auto}
+.shot-narrow{width:100%;max-width:460px;margin:0 auto}
+figcaption{margin-top:12px;color:var(--txt3);font-size:13.5px;text-align:center}
+figcaption b{color:var(--txt2)}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:22px 24px;margin:0 0 22px}
+.card h3{margin:0 0 12px;font-size:18px}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:16px}
+.tip{border-left:3px solid var(--blue);background:var(--blue-bg);padding:16px 20px;border-radius:0 10px 10px 0;margin:0 0 20px;color:var(--txt)}
+.tip.warn{border-left-color:var(--accent);background:var(--accent-bg)}
+.tip.err{border-left-color:var(--err);background:var(--err-bg)}
+.tip.ok{border-left-color:var(--ok);background:var(--ok-bg)}
+.tip b{color:#fff}
+ul,ol{padding-left:22px;margin:0 0 16px}
+li{margin:7px 0}
+li::marker{color:var(--accent)}
+table{width:100%;border-collapse:collapse;margin:0 0 22px;font-size:14px;background:var(--panel);border-radius:12px;overflow:hidden}
+th,td{padding:12px 14px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:var(--panel2);color:var(--txt2);font-weight:600;font-size:13.5px}
+tr:last-child td{border-bottom:none}
+td code,kbd,code{background:#0b0e13;border:1px solid var(--line2);border-radius:6px;padding:1px 7px;font-size:13px;color:var(--accent2);
+  font-family:"Cascadia Code",Consolas,monospace}
+.num-list{counter-reset:st;list-style:none;padding-left:0}
+.num-list>li{position:relative;padding-left:36px;margin:12px 0}
+.num-list>li::before{counter-increment:st;content:counter(st);position:absolute;left:0;top:4px;width:24px;height:24px;border-radius:8px;
+  background:var(--accent-bg);color:var(--accent2);font-size:12.5px;display:grid;place-items:center;font-weight:700}
+.checklist{list-style:none;padding:0}
+.checklist li{padding-left:34px;position:relative;margin:11px 0}
+.checklist li::before{content:"✓";position:absolute;left:0;top:0;width:22px;height:22px;border-radius:7px;
+  background:var(--ok-bg);color:var(--ok);font-size:13px;display:grid;place-items:center;font-weight:700}
+.foot{margin-top:70px;padding-top:26px;border-top:1px solid var(--line);color:var(--txt3);font-size:13px;text-align:center}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div class="badge-row">
+      <span class="badge hot">● 咕嘎AI漫剧 · Guga Studio</span>
+      <span class="badge">图文教程</span>
+      <span class="badge ok">深色界面</span>
+      <span class="badge blue">顶部导航 → 常用工具</span>
+      <span class="badge gray">场景助手：未开发</span>
+    </div>
+    <h1>常用工具<span class="grad">图文教学</span></h1>
+    <p class="sub">
+      「常用工具」是咕嘎的独立工具台，<b>不依附任何短剧项目</b>，随用随做、随做随存。本教程覆盖
+      <b>本地角色助手</b>、<b>qwen2.1 图像编辑器</b>、<b>视频画质增强</b>、<b>视频画质增强 v2</b> 四个已上线工具，
+      并如实说明 <b>场景助手</b> 的当前状态与替代方案。所有界面图均取自软件真实运行界面（2560×1400 宽屏、深色模式）。
+    </p>
+    <div class="meta-row">
+      <span>适用版本：<b>咕嘎AI漫剧（Guga Studio）V3</b></span>
+      <span>入口：<b>顶部导航 → 常用工具</b></span>
+      <span>阅读时长：<b>约 12 分钟</b></span>
+      <span>前置条件：<b>本地 ComfyUI 或已配置云端服务</b></span>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+<nav class="toc">
+  <h4>目录</h4>
+  <a href="#s0">0 · 常用工具页总览</a>
+  <a href="#s1">1 · 本地角色助手</a>
+  <a href="#s2">2 · 场景助手（未开发）</a>
+  <a href="#s3">3 · qwen2.1 图像编辑器</a>
+  <a href="#s4">4 · 视频画质增强（v1）</a>
+  <a href="#s5">5 · 视频画质增强 v2</a>
+  <a href="#s6">6 · 生成记录与素材库互通</a>
+  <a href="#s7">7 · 常见问题与检查清单</a>
+</nav>
+
+<!-- 0 -->
+<section id="s0">
+  <div class="sec-head"><div class="sec-num">0</div><h2>常用工具页总览</h2></div>
+  <p class="lead">同一套三栏骨架，八个标签页。左边填参数，中间看结果，右边管历史。</p>
+
+  <figure>
+    <img class="shot" src="03-tools-01.png" alt="常用工具标签栏">
+    <figcaption><b>图 1</b>　常用工具的 8 个标签：本地角色助手 / qwen2.1 图像编辑器 / 本地生图 / 云端生图 / 本地生视频 / 云端生视频 / 画质增强 / 画质增强v2</figcaption>
+  </figure>
+
+  <div class="card">
+    <h3>三栏结构（所有标签通用）</h3>
+    <table>
+      <thead><tr><th style="width:130px">区域</th><th>内容</th></tr></thead>
+      <tbody>
+        <tr><td><b>左栏</b></td><td>参数面板：模型、LoRA、提示词、尺寸、步数、模式选择等，随标签变化</td></tr>
+        <tr><td><b>中栏</b></td><td>预览舞台：图片或视频大图，支持滚轮缩放 / 拖动平移 / 双击 100%，顶部可命名、发送至、刷新、关闭</td></tr>
+        <tr><td><b>右栏</b></td><td>本页生成记录：状态统计（生成中 / 完成 / 失败）、缩略图、时长、存入素材库 / 打开文件 / 删除记录、收藏星标</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="tip">
+    <b>为什么把工具单独拆一页？</b>短剧流程里经常需要「先做一张角色图试试」「把一段旧视频提清晰」这类不依赖项目的活儿。常用工具就是为这些场景准备的：<b>生成结果可一键存入素材库</b>，也能<b>发送至剧集</b>直接用在剧集资产里。
+  </div>
+</section>
+
+<!-- 1 -->
+<section id="s1">
+  <div class="sec-head"><div class="sec-num">1</div><h2>本地角色助手</h2></div>
+  <p class="lead">点选即成图的角色生成器：选风格 → 选角色定位 → 选图片类型，提示词自动组合，本地 ComfyUI 出图不花钱。</p>
+
+  <figure>
+    <img class="shot" src="03-tools-02.png" alt="本地角色助手">
+    <figcaption><b>图 2</b>　本地角色助手全页：左参数 / 中预览 / 右生成记录</figcaption>
+  </figure>
+
+  <figure>
+    <img class="shot shot-narrow" src="03-tools-03.png" alt="本地角色助手参数面板">
+    <figcaption><b>图 3</b>　参数面板细节</figcaption>
+  </figure>
+
+  <div class="card">
+    <h3>参数面板逐项</h3>
+    <table>
+      <thead><tr><th style="width:140px">控件</th><th>说明</th></tr></thead>
+      <tbody>
+        <tr><td><b>模型</b></td><td>默认 <code>COMFYUI z_image_turbo</code>（一键写入本地配置后可用）；带图标的是本地模型，右侧刷新按钮可重新拉取</td></tr>
+        <tr><td><b>LoRA</b></td><td>下拉选择或「手动输入 LoRA 文件名…」（在 <code>models/loras</code> 下），可调 LoRA 强度并刷新列表</td></tr>
+        <tr><td><b>画面风格</b></td><td>写实 / CG写实 / 3D仙侠 / 3D卡通</td></tr>
+        <tr><td><b>角色定位</b>（点击套用预设）</td><td>女主角、男主角、恶毒女配、反派男主、温柔男二、元气闺蜜、贵妇母亲、威严父亲、慈祥老人、萌娃小孩、保镖护卫、女仆管家、医生、警察、清纯学生、时尚主播……以及「自定义角色」</td></tr>
+        <tr><td><b>图片类型</b></td><td>半身照 / 全身照 / 三视图 / 四视图</td></tr>
+        <tr><td><b>提示词</b></td><td>选择风格+定位+类型后<b>自动组合</b>，可自由编辑；点「重新组合」按当前选项重写（会覆盖手改内容）</td></tr>
+        <tr><td><b>出图尺寸</b></td><td>预设档位（入门预览级 4:3 / 社交媒体通用级 16:9 / 全高清级 16:9 / 2K超清级 / 专业创作级 4:3 / 4K旗舰级；竖屏另有 9:16、3:4、19.5:9 档），也可自定义宽高（64~4096，建议 8 的倍数）</td></tr>
+        <tr><td><b>采样步数</b></td><td>按模型给出 4/6/8/12 等档位；步数越多细节越好、耗时越长</td></tr>
+        <tr><td><b>实时预览</b></td><td>生成过程中在中间画布实时显示采样预览图</td></tr>
+        <tr><td><b>高级参数</b></td><td>随机种子（-1 随机）、CFG 引导强度、负向提示词、采样器、调度器</td></tr>
+        <tr><td><b>开始生成</b></td><td>提交任务，完成后出现在中间预览与右栏记录</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <ol class="num-list">
+    <li>顶部导航 → <b>常用工具</b> → 标签 <b>本地角色助手</b>。</li>
+    <li>选 <b>画面风格</b> → 点 <b>角色定位</b>（如「女主角」）→ 选 <b>图片类型</b>（如「全身照」）。</li>
+    <li>提示词自动生成后，必要时手动补一句外形描述（发色、服装、道具），避免每次都抽同一个人。</li>
+    <li>选<b>出图尺寸</b>与<b>采样步数</b>，点 <b>开始生成</b>。</li>
+    <li>中栏预览满意后，点右上 <b>发送至</b> 发到剧集角色框，或 <b>存入素材库</b> 长期保存。</li>
+  </ol>
+
+  <div class="tip ok">
+    <b>三视图 / 四视图</b>是短剧里最省事的功能：一次出多角度，画风与服装完全一致，直接用作「角色资产」，后续分镜里的人脸就不会乱跳。
+  </div>
+</section>
+
+<!-- 2 -->
+<section id="s2">
+  <div class="sec-head"><div class="sec-num">2</div><h2>场景助手（未开发）</h2></div>
+  <p class="lead">这是产品规划中的工具，当前版本<b>尚未上线，界面里没有入口</b>。本节说明它的定位与现在的替代做法。</p>
+
+  <div class="tip warn">
+    <b>当前状态（已在实际运行版本中核对）</b>：常用工具的标签栏只有 8 个——本地角色助手、qwen2.1 图像编辑器、本地生图、云端生图、本地生视频、云端生视频、画质增强、画质增强v2，<b>没有「场景助手」这一项</b>；软件前端源码与全部语言包中也检索不到「场景助手」字样。因此它目前<b>无法使用</b>。
+  </div>
+
+  <div class="card">
+    <h3>规划中的定位</h3>
+    <ul style="margin:0">
+      <li><b>与「本地角色助手」对称</b>：同样采用「预设分类 + 自动组合提示词 + 一键生成」的方式，用于批量产出场景图（室内 / 室外 / 街道 / 古代街市 / 山谷 / 宫殿……）。</li>
+      <li><b>核心诉求</b>：同一部戏的场景要能复用同一套空间布局与光线，因此每个场景会像角色一样有「场景定位预设 + 多角度图 + 英文描述锚点」。</li>
+      <li><b>入库路径</b>：生成后进入素材库，并可一键发送到剧集的<b>场景资产</b>，供分镜阶段作为参考图使用。</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>现在就能用的三种替代方案</h3>
+    <table>
+      <thead><tr><th style="width:150px">方案</th><th>做法</th><th style="width:150px">适合</th></tr></thead>
+      <tbody>
+        <tr><td><b>本地生图 / 云端生图</b></td><td>标签切到「本地生图」或「云端生图」，在提示词里手写场景描述（主体 + 环境 + 光线 + 风格），生成后存入素材库</td><td>单个场景、临时用</td></tr>
+        <tr><td><b>qwen2.1 图像编辑器</b></td><td>用一张参考图做整图编辑 / 局部重绘，把同一张图派生出多个角度</td><td>已有一张主图想改细节</td></tr>
+        <tr><td><b>短剧导演台 · 项目素材库</b></td><td>在剧集的「素材库」标签里让 Agent 自动提取场景并出图，人工微调后存为项目资产</td><td><b>推荐</b>：场景与剧情强绑定，全片一致</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <figure>
+    <img class="shot" src="03-tools-10.png" alt="素材库">
+    <figcaption><b>图 4</b>　素材库：按日期分组，可按分类 / 画幅 / 风格 / 模型筛选，每张卡片可「发送到剧集」、改名、收藏、删除</figcaption>
+  </figure>
+
+  <div class="tip err">
+    <b>不要去找一个不存在的按钮。</b>如果手册或同事提到「场景助手」，请按上面第 3 条走「短剧导演台 → 项目素材库」的路线 —— 这条路不但现在可用，而且场景会和该剧的角色、分镜自动对齐，比独立的场景生成器更省事。
+  </div>
+</section>
+
+<!-- 3 -->
+<section id="s3">
+  <div class="sec-head"><div class="sec-num">3</div><h2>qwen2.1 图像编辑器</h2></div>
+  <p class="lead">本地 Qwen-Image-2.1 驱动的修图台：整图编辑、局部重绘、移除对象、人脸替换四种模式。</p>
+
+  <figure>
+    <img class="shot" src="03-tools-04.png" alt="qwen2.1图像编辑器">
+    <figcaption><b>图 5</b>　qwen2.1 图像编辑器：左侧模式与参数，中间画布，右侧生成记录</figcaption>
+  </figure>
+
+  <figure>
+    <img class="shot shot-narrow" src="03-tools-05.png" alt="qwen编辑器参数面板">
+    <figcaption><b>图 6</b>　局部重绘模式的参数面板</figcaption>
+  </figure>
+
+  <div class="card">
+    <h3>四种编辑模式</h3>
+    <table>
+      <thead><tr><th style="width:130px">模式</th><th>做什么</th></tr></thead>
+      <tbody>
+        <tr><td><b>整图编辑</b></td><td>按提示词整体修改画面（换背景、改服装、改风格）</td></tr>
+        <tr><td><b>局部重绘</b></td><td>在画布上框选一块区域，只重绘这一块（换衣服、修手、去掉路人）</td></tr>
+        <tr><td><b>移除对象</b></td><td>移除方式：专用移除 LoRA（实验版）或仅提示词描述；可调消除强度</td></tr>
+        <tr><td><b>人脸替换</b></td><td>人脸替换方式：BFS 身份增强（推荐）或仅提示词描述；可调身份增强强度</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <h3>参数面板逐项（局部重绘）</h3>
+    <table>
+      <thead><tr><th style="width:150px">字段</th><th>说明</th></tr></thead>
+      <tbody>
+        <tr><td><b>目标原图</b></td><td>点击选择或拖入目标原图</td></tr>
+        <tr><td><b>选区边缘</b></td><td>向外扩展 / 向内羽化；勾选「覆盖选区尺寸」可保证选区外像素保持不变、保留原图尺寸</td></tr>
+        <tr><td><b>选区像素要求</b></td><td>例如「把选中的衣服纹理还原成细节」，描述越具体越准</td></tr>
+        <tr><td><b>局部重绘基础模型</b></td><td>默认 <code>768（推荐）</code>；成品交付按图选 9 张贴图，提示词按 9 段描述画面与精度</td></tr>
+        <tr><td><b>采样步数 / 生成张数</b></td><td>默认 40 步 / 1 张</td></tr>
+        <tr><td><b>实时预览</b></td><td>生成过程中在画布实时显示采样预览</td></tr>
+        <tr><td><b>透明背景</b></td><td>Qwen-Image-2.1 为蒸馏模型，原生 RGBA 输出，保存为透明底 PNG</td></tr>
+        <tr><td><b>高级参数</b></td><td>随机种子（-1 为随机）、CFG 引导强度、负向提示词</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <ol class="num-list">
+    <li>常用工具 → 标签 <b>qwen2.1 图像编辑器</b>，模型选 <code>qwen_image_2.1</code>。</li>
+    <li>上传<b>目标原图</b>，再选模式（整图 / 局部 / 移除 / 人脸替换）。</li>
+    <li>局部重绘：在画布上拖框选区 → 写选区像素要求 → 选基础模型与步数 → <b>开始生成</b>。</li>
+    <li>人脸替换：先传<b>参考人脸</b>，选 BFS 身份增强，调强度。</li>
+    <li>结果满意后 <b>存入素材库</b> 或 <b>发送至</b> 剧集。</li>
+  </ol>
+
+  <div class="tip warn">
+    <b>注意 CFG</b>：Qwen-Image-2.1 是蒸馏模型，<b>CFG=1 时负向提示词不参与采样</b>；需要负向提示词生效时把 CFG 调到大于 1（画质可能下降）。
+  </div>
+</section>
+
+<!-- 4 -->
+<section id="s4">
+  <div class="sec-head"><div class="sec-num">4</div><h2>视频画质增强（v1）</h2></div>
+  <p class="lead">SeedVR2 超分 + RIFE 插帧，本地跑，不联网、不上传原片。</p>
+
+  <figure>
+    <img class="shot" src="03-tools-06.png" alt="视频画质增强">
+    <figcaption><b>图 7</b>　画质增强 v1：上传源视频 → 选增强方式 / 插帧倍率 / 目标清晰度 → 开始生成</figcaption>
+  </figure>
+
+  <figure>
+    <img class="shot shot-narrow" src="03-tools-07.png" alt="画质增强参数面板">
+    <figcaption><b>图 8</b>　v1 参数面板</figcaption>
+  </figure>
+
+  <div class="card">
+    <h3>三个参数</h3>
+    <table>
+      <thead><tr><th style="width:130px">参数</th><th>说明</th></tr></thead>
+      <tbody>
+        <tr><td><b>源视频</b></td><td>上传或选择本地视频</td></tr>
+        <tr><td><b>增强方式</b></td><td><code>超分 + 插帧</code>（画面更清晰 + 动作更顺滑）；也可只做超分或只做插帧</td></tr>
+        <tr><td><b>插帧倍率</b></td><td>如 2 倍帧率</td></tr>
+        <tr><td><b>目标清晰度</b></td><td>如 <code>720p（推荐·省显存）</code>；越高越清晰、耗时越久</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="tip ok">
+    <b>原理与排队</b>：超分使用本机 <b>SeedVR2</b>，插帧使用 <b>RIFE</b>。它与生成任务<b>共用同一队列</b>，完成后在<b>任务抽屉</b>里取片。目标清晰度越高、视频越长，耗时越久。
+  </div>
+
+  <div class="tip warn">
+    <b>v1 的取舍</b>：只提供「超分 + 插帧」这一套固定组合，无法单独挑算法、也没有分辨率档位和编码质量可调。追求更多控制、更高画质上限，请用下一节的 <b>v2</b>。
+  </div>
+</section>
+
+<!-- 5 -->
+<section id="s5">
+  <div class="sec-head"><div class="sec-num">5</div><h2>视频画质增强 v2</h2></div>
+  <p class="lead">四种增强方案 + 显存档位 + 编码质量，画质天花板更高，也更不容易卡死。</p>
+
+  <figure>
+    <img class="shot" src="03-tools-08.png" alt="视频画质增强v2">
+    <figcaption><b>图 9</b>　画质增强 v2：四张方案卡、分辨率档位、插帧与编码质量</figcaption>
+  </figure>
+
+  <figure>
+    <img class="shot shot-narrow" src="03-tools-09.png" alt="画质增强v2参数面板">
+    <figcaption><b>图 10</b>　v2 参数面板：方案卡 + 档位 + 预计耗时/临时显存说明</figcaption>
+  </figure>
+
+  <div class="card">
+    <h3>四种增强方案怎么选</h3>
+    <table>
+      <thead><tr><th style="width:170px">方案</th><th>特点</th><th style="width:170px">推荐给</th></tr></thead>
+      <tbody>
+        <tr><td><b>GAN 快速放大</b></td><td>逐帧模型锐化，秒级出片，永不卡死</td><td>老片抢救、时间紧</td></tr>
+        <tr><td><b>高码率保真</b></td><td>不放大，仅重编码，画质与原片一致</td><td>只想改善码率与兼容度</td></tr>
+        <tr><td><b>组合高清</b>（推荐）</td><td>GAN 预放大 + AI 精修，画质天花板</td><td>正式交付</td></tr>
+        <tr><td><b>AI 精修</b></td><td>SeedVR2 生成式，最自然，但较慢</td><td>追求质感、不赶时间</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <h3>其余参数</h3>
+    <table>
+      <thead><tr><th style="width:150px">参数</th><th>说明</th></tr></thead>
+      <tbody>
+        <tr><td><b>分辨率档位</b></td><td><code>8G 720p</code> / <code>12G 720p</code> / <code>16G 1080p</code> / <code>24G 1440p</code> —— 按自己的显存选，系统会显示预计时长与临时显存</td></tr>
+        <tr><td><b>插帧</b></td><td><code>插帧 ×2（更顺滑）</code></td></tr>
+        <tr><td><b>编码质量</b></td><td><code>中（平衡 · CRF 20）</code>；CRF 越小越清晰、体积越大</td></tr>
+        <tr><td><b>预计时长 / 临时显存</b></td><td>面板会直接给出「预计约 X 分钟 · 临时约 Y GB」的提示，按它排期</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="tip err">
+    <b>为什么 v2 更稳？</b>GAN 路径把 960×544 放大到 1920×1088，避开了单次分辨率与插帧叠加造成的显存峰值；配合低 CRF 编码（20/16）和「逐帧模型」与「插帧」分离处理，能显著降低「跑一半崩掉」的概率。系统提示中也写明：<b>跑完可看原片、随时缩放、可单帧对比</b>。
+  </div>
+</section>
+
+<!-- 6 -->
+<section id="s6">
+  <div class="sec-head"><div class="sec-num">6</div><h2>生成记录与素材库互通</h2></div>
+  <p class="lead">所有工具的产出都汇到右栏记录，并可一键入库或发到剧集。</p>
+
+  <div class="card">
+    <h3>右栏「本页生成记录」</h3>
+    <ul style="margin:0">
+      <li><b>状态统计</b>：生成中 / 已完成 / 失败 三个计数，失败任务可点「重新生成」按原参数重试</li>
+      <li><b>每条记录</b>：缩略图 + 名称 + 模型 + 耗时（如 5m22s），右侧可 <b>存入素材库</b>、<b>打开文件</b>（定位到磁盘）、<b>删除记录</b>、星标收藏</li>
+      <li><b>刷新</b>：右上角按钮同步最新任务状态</li>
+      <li><b>发送至</b>：本地生成的图片可直接发到剧集资产</li>
+    </ul>
+  </div>
+
+  <figure>
+    <img class="shot" src="03-tools-10.png" alt="素材库">
+    <figcaption><b>图 11</b>　素材库：分类 / 画幅 / 风格 / 模型多维筛选，按日期相册分组，卡片可发送到剧集</figcaption>
+  </figure>
+
+  <div class="tip ok">
+    <b>推荐工作流</b>：常用工具出图 → 存入素材库 → 在素材库里挑选、命名、收藏 → 发送到剧集的角色 / 场景框。这样素材集中在一处，剧集里不会到处散图。
+  </div>
+</section>
+
+<!-- 7 -->
+<section id="s7">
+  <div class="sec-head"><div class="sec-num">7</div><h2>常见问题与检查清单</h2></div>
+
+  <div class="card">
+    <h3>常见问题</h3>
+    <table>
+      <thead><tr><th style="width:180px">现象</th><th>原因与处理</th></tr></thead>
+      <tbody>
+        <tr><td>提示「尚未配置可用的生图/视频服务」</td><td>去 <b>设置 → AI 服务</b> 添加并启用，或用 ComfyUI 一键配置写入本地服务</td></tr>
+        <tr><td>出图尺寸/步数被锁</td><td>分辨率 0.6 以上、采样步数超过 8、生成分辨率超过 1920×1080、生成加速均属 <b>VIP 功能</b>，免费档用 8 步以内与较低分辨率</td></tr>
+        <tr><td>提示词被覆盖了</td><td>「重新组合」会按当前选项重写提示词并覆盖手改内容；想保留手改就别点它</td></tr>
+        <tr><td>局部重绘边缘突兀</td><td>勾选「覆盖选区尺寸」保持选区外像素不变，并适当调「选区边缘」的向外扩展 / 向内羽化</td></tr>
+        <tr><td>负向提示词不起作用</td><td>Qwen-Image-2.1 是蒸馏模型，CFG=1 时负向提示词不参与采样，把 CFG 调到大于 1</td></tr>
+        <tr><td>画质增强任务排队很久</td><td>与生成任务共用队列；面板会给出预计时长，可先降档位（8G 720p）或改用 GAN 快速放大</td></tr>
+        <tr><td>增强后文件找不到</td><td>在任务抽屉取片，或在生成记录里点「打开文件」定位到磁盘</td></tr>
+        <tr><td>找不到「场景助手」</td><td>该工具尚未开发，界面无入口；请用「本地生图」或「短剧导演台 → 项目素材库」</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <h3>使用检查清单</h3>
+    <ul class="checklist">
+      <li>设置 → AI 服务已配置本地 ComfyUI 或云端生图服务</li>
+      <li>选对模型：角色图用 z_image_turbo / qwen_image_2.1，修图用 qwen_image_2.1</li>
+      <li>角色图已选画面风格 + 角色定位 + 图片类型，提示词手改过（外貌描述）</li>
+      <li>尺寸档位与投放平台匹配（短视频 1080×1920 竖屏）</li>
+      <li>免费档把采样步数控制在 8 步以内</li>
+      <li>局部重绘先框选区再写像素要求</li>
+      <li>画质增强已按显存选对档位（8G 720p / 12G 720p / 16G 1080p / 24G 1440p）</li>
+      <li>生成的成品已「存入素材库」并命名</li>
+      <li>需要的素材已「发送至」对应剧集资产框</li>
+    </ul>
+  </div>
+</section>
+
+<div class="foot">
+  咕嘎AI漫剧（Guga Studio）· 常用工具图文教程　|　界面截图取自本机真实运行环境（深色模式）<br>
+  文档版本 v1.0　·　场景助手尚未上线，以软件实际显示为准
+</div>
+
+</div>
+</body>
+</html>

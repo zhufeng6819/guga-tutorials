@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>咕嘎AI漫剧 · 小说工作台图文教程（小说PLUS）</title>
+<style>
+:root{
+  --bg:#0d0f13; --panel:#171c26; --panel2:#1e2531;
+  --line:#252d3b; --line2:#313b4d;
+  --txt:#e8edf5; --txt2:#9aa7ba; --txt3:#6b7889;
+  --accent:#ff8a1f; --accent2:#ffb257; --accent-bg:rgba(255,138,31,.14);
+  --ok:#3ecf8e; --ok-bg:rgba(62,207,142,.14);
+  --err:#ff6b6b; --err-bg:rgba(255,107,107,.14);
+  --blue:#4c9bff; --blue-bg:rgba(76,155,255,.14);
+  --violet:#a78bfa; --violet-bg:rgba(167,139,250,.14);
+  --radius:14px;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:
+    radial-gradient(1200px 700px at 12% -8%, rgba(255,138,31,.10), transparent 60%),
+    radial-gradient(900px 600px at 92% 4%, rgba(167,139,250,.10), transparent 55%),
+    var(--bg);
+  color:var(--txt);
+  font-family:"PingFang SC","Microsoft YaHei","Segoe UI",system-ui,sans-serif;
+  font-size:15px; line-height:1.85; -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px 100px}
+header.hero{
+  margin:0 -24px 0;padding:64px 24px 52px;
+  background:linear-gradient(180deg,rgba(167,139,250,.12),transparent 70%);
+  border-bottom:1px solid var(--line);
+}
+.hero-inner{max-width:1180px;margin:0 auto}
+.badge-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:18px}
+.badge{display:inline-flex;align-items:center;gap:6px;padding:5px 13px;border-radius:999px;
+  font-size:12.5px;letter-spacing:.4px;border:1px solid var(--line2);color:var(--txt2);background:var(--panel)}
+.badge.hot{color:var(--accent2);border-color:rgba(255,138,31,.45);background:var(--accent-bg)}
+.badge.ok{color:var(--ok);border-color:rgba(62,207,142,.4);background:var(--ok-bg)}
+.badge.blue{color:var(--blue);border-color:rgba(76,155,255,.4);background:var(--blue-bg)}
+.badge.violet{color:var(--violet);border-color:rgba(167,139,250,.45);background:var(--violet-bg)}
+h1{font-size:clamp(30px,4.4vw,46px);line-height:1.25;margin:0 0 14px;letter-spacing:-.5px}
+h1 .grad{background:linear-gradient(95deg,var(--accent),#c9b6ff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.sub{color:var(--txt2);font-size:16.5px;max-width:880px;margin:0 0 26px}
+.meta-row{display:flex;flex-wrap:wrap;gap:22px;color:var(--txt3);font-size:13.5px}
+.meta-row b{color:var(--txt2);font-weight:600}
+nav.toc{
+  background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+  padding:22px 26px;margin:34px 0 46px;display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:8px 26px;
+}
+nav.toc h4{margin:0 0 12px;font-size:13px;letter-spacing:1.5px;color:var(--txt3);text-transform:uppercase;grid-column:1/-1}
+nav.toc a{color:var(--txt2);text-decoration:none;font-size:14px;display:block;padding:5px 10px;border-radius:8px;border-left:2px solid transparent}
+nav.toc a:hover{color:var(--accent2);background:var(--accent-bg);border-left-color:var(--accent)}
+section{margin:0 0 60px;scroll-margin-top:20px}
+.sec-head{display:flex;align-items:center;gap:14px;margin:0 0 18px}
+.sec-num{flex:0 0 auto;width:40px;height:40px;border-radius:11px;display:grid;place-items:center;
+  background:var(--violet-bg);color:var(--violet);font-weight:700;font-size:16px;border:1px solid rgba(167,139,250,.35)}
+h2{font-size:25px;margin:0;letter-spacing:-.2px}
+.lead{color:var(--txt2);margin:0 0 26px;padding-left:54px;font-size:15px}
+@media(max-width:640px){.lead{padding-left:0}}
+figure{margin:0 0 22px}
+.shot{display:block;width:100%;border:1px solid var(--line2);border-radius:var(--radius);
+  box-shadow:0 18px 48px rgba(0,0,0,.55);background:var(--panel);transition:.22s}
+.shot:hover{border-color:rgba(167,139,250,.55);transform:translateY(-2px)}
+.shot-band{width:100%;border:1px solid var(--line2);border-radius:12px;background:var(--panel)}
+figcaption{margin-top:12px;color:var(--txt3);font-size:13.5px;text-align:center}
+figcaption b{color:var(--txt2)}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:22px 24px;margin:0 0 22px}
+.card h3{margin:0 0 12px;font-size:18px}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:16px}
+.tip{border-left:3px solid var(--blue);background:var(--blue-bg);padding:16px 20px;border-radius:0 10px 10px 0;margin:0 0 20px;color:var(--txt)}
+.tip.warn{border-left-color:var(--accent);background:var(--accent-bg)}
+.tip.err{border-left-color:var(--err);background:var(--err-bg)}
+.tip.ok{border-left-color:var(--ok);background:var(--ok-bg)}
+.tip.v{border-left-color:var(--violet);background:var(--violet-bg)}
+.tip b{color:#fff}
+ul,ol{padding-left:22px;margin:0 0 16px}
+li{margin:7px 0}
+li::marker{color:var(--accent)}
+table{width:100%;border-collapse:collapse;margin:0 0 22px;font-size:14px;background:var(--panel);border-radius:12px;overflow:hidden}
+th,td{padding:12px 14px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:var(--panel2);color:var(--txt2);font-weight:600;font-size:13.5px}
+tr:last-child td{border-bottom:none}
+td code,kbd,code{background:#0b0e13;border:1px solid var(--line2);border-radius:6px;padding:1px 7px;font-size:13px;color:var(--accent2);
+  font-family:"Cascadia Code",Consolas,monospace}
+.num-list{counter-reset:st;list-style:none;padding-left:0}
+.num-list>li{position:relative;padding-left:36px;margin:12px 0}
+.num-list>li::before{counter-increment:st;content:counter(st);position:absolute;left:0;top:4px;width:24px;height:24px;border-radius:8px;
+  background:var(--violet-bg);color:var(--violet);font-size:12.5px;display:grid;place-items:center;font-weight:700}
+.wbgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;margin:0 0 22px}
+.wb{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+.wb b{display:block;color:var(--violet);font-size:15.5px;margin-bottom:6px}
+.wb p{margin:0;color:var(--txt2);font-size:13.8px;line-height:1.75}
+.wb .path{color:var(--txt3);font-size:12.5px;margin-top:8px;font-family:Consolas,monospace}
+.checklist{list-style:none;padding:0}
+.checklist li{padding-left:34px;position:relative;margin:11px 0}
+.checklist li::before{content:"✓";position:absolute;left:0;top:0;width:22px;height:22px;border-radius:7px;
+  background:var(--ok-bg);color:var(--ok);font-size:13px;display:grid;place-items:center;font-weight:700}
+.foot{margin-top:70px;padding-top:26px;border-top:1px solid var(--line);color:var(--txt3);font-size:13px;text-align:center}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div class="badge-row">
+      <span class="badge violet">● 咕嘎AI漫剧 · Guga Studio</span>
+      <span class="badge">图文教程</span>
+      <span class="badge ok">深色界面</span>
+      <span class="badge blue">顶部导航 → 小说PLUS</span>
+    </div>
+    <h1>小说工作台<span class="grad">图文教学</span></h1>
+    <p class="sub">
+      「小说PLUS」是咕嘎的小说主阵地，集成 <b>AI_NovelGenerator</b>、<b>Long-Novel-GPT</b>、<b>OpenWrite</b>、<b>AI小说家</b> 四套小说引擎工作台，
+      面向长篇连载与多轮修订。本教程讲清：作品怎么建、192 个教程模板怎么用、四套工作台各自的独门能力、以及正文如何导出并接到短剧线上。
+      所有界面图均取自软件真实运行界面（2560×1400 宽屏、深色模式）。
+    </p>
+    <div class="meta-row">
+      <span>适用版本：<b>咕嘎AI漫剧（Guga Studio）V3</b></span>
+      <span>入口：<b>顶部导航 → 小说PLUS</b></span>
+      <span>阅读时长：<b>约 10 分钟</b></span>
+      <span>前置条件：<b>文本模型已配置</b></span>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+<nav class="toc">
+  <h4>目录</h4>
+  <a href="#s0">0 · 四套工作台总览</a>
+  <a href="#s1">1 · 小说PLUS：作品与教程模板</a>
+  <a href="#s2">2 · 工作台① AI_NovelGenerator</a>
+  <a href="#s3">3 · 工作台② Long-Novel-GPT</a>
+  <a href="#s4">4 · 工作台③ OpenWrite</a>
+  <a href="#s5">5 · 工作台④ AI小说家</a>
+  <a href="#s6">6 · 四选一：怎么挑</a>
+  <a href="#s7">7 · 常见问题与检查清单</a>
+</nav>
+
+<!-- 0 -->
+<section id="s0">
+  <div class="sec-head"><div class="sec-num">0</div><h2>四套工作台总览</h2></div>
+  <p class="lead">四套引擎共用同一个页面外壳：顶部切工作台，下方是作品区与教程模板库。切换后，说明文字与专属按钮会随之变化。</p>
+
+  <figure>
+    <img class="shot" src="04-novel-01.png" alt="小说PLUS工作台">
+    <figcaption><b>图 1</b>　小说PLUS 页面：顶部四个工作台标签 + 作品选择/新建作品 + 小说模板库（192 个）</figcaption>
+  </figure>
+
+  <div class="wbgrid">
+    <div class="wb">
+      <b>AI_NovelGenerator</b>
+      <p>长篇记忆库：角色状态表、伏笔账本、一致性审校、自动更新前情 —— 写 17 万字不崩人设、不失忆。</p>
+      <div class="path">小说PLUS → AI_NovelGenerator 工作台</div>
+    </div>
+    <div class="wb">
+      <b>Long-Novel-GPT</b>
+      <p>层级流水线：创意 → 大纲 → 章节计划 → 正文，逐层重生成；支持文本地图与「拆书」拆出分镜建议。</p>
+      <div class="path">小说PLUS → Long-Novel-GPT 工作台</div>
+    </div>
+    <div class="wb">
+      <b>OpenWrite</b>
+      <p>canon 正史分离：AI 只提案、人工确认才入正史；Goethe 规划 + Dante 执笔双 Agent；六域审查。</p>
+      <div class="path">小说PLUS → OpenWrite 工作台</div>
+    </div>
+    <div class="wb">
+      <b>AI小说家</b>
+      <p>六种题材模板 + 滑动窗口上下文（近 3 章全文 + 近期弧线压缩）+ 断点续传 + 单章独立重生成。</p>
+      <div class="path">小说PLUS → AI小说家 工作台</div>
+    </div>
+  </div>
+
+  <div class="tip v">
+    <b>怎么用这些工作台？</b>统一四步：<b>选工作台 → 建作品 → 填/选题材底稿 → 按该工作台的专属能力推进正文</b>。四套引擎的能力不同，但入口、作品管理、导出方式完全一致，可以随时换台继续写同一部作品。
+  </div>
+</section>
+
+<!-- 1 -->
+<section id="s1">
+  <div class="sec-head"><div class="sec-num">1</div><h2>小说PLUS：作品与教程模板</h2></div>
+  <p class="lead">先建作品，再挑底稿，最后按工作台能力往下写。</p>
+
+  <div class="card">
+    <h3>页面元素</h3>
+    <table>
+      <thead><tr><th style="width:170px">元素</th><th>说明</th></tr></thead>
+      <tbody>
+        <tr><td><b>四个工作台标签</b></td><td>AI_NovelGenerator / Long-Novel-GPT / OpenWrite / AI小说家；切换后描述与专属按钮随之变化，地址栏会带 <code>?tab=</code>，可直接分享链接</td></tr>
+        <tr><td><b>导出 TXT / 保存修改</b></td><td>右上角两个动作：把正文导出为 TXT、或保存当前改动</td></tr>
+        <tr><td><b>作品选择 + 新建作品</b></td><td>下拉切换已有作品；「＋ 新建作品」展开表单：<b>作品名</b>（例：重生动书）→ 点<b>创建</b></td></tr>
+        <tr><td><b>从教程模板选题（8 类 × 24 个）</b></td><td>不会选题就点模板：<b>现实生活 / 情感言情 / 年代历史 / 悬疑刑侦 / 古装权谋 / 玄幻武侠 / 幻想科幻 / 逆袭反转</b>，每类 24 个</td></tr>
+        <tr><td><b>写作口诀</b></td><td>页面顶部提示：日常场景 + 一个反常细节 + 钩子留在「谁在敲窗守钟声」，反常要具体（数字、日期、次数），答案最好落在人身上</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <ol class="num-list">
+    <li>顶部导航 <b>小说PLUS</b>，在下拉里选要用的工作台（也可直接点页面上的四个标签）。</li>
+    <li>点 <b>＋ 新建作品</b> → 填<b>作品名</b> → <b>创建</b>。</li>
+    <li>在<b>教程模板选题</b>里挑一个题材底稿（8 类 × 24 个），点开看结构示例，作为起稿参考。</li>
+    <li>回到该工作台的专属能力（角色状态表 / 层级流水线 / 正史分离 / 断点续传…）开始推进正文。</li>
+    <li>随时点 <b>保存修改</b> 落盘；完稿后 <b>导出 TXT</b>。</li>
+  </ol>
+
+  <div class="tip warn">
+    <b>注意</b>：模板里的示例选题（比如《我的前台是ink》《白月光在逃》《局长在吞金》《劫后重逢的aphore》《神经病少年的one夜》《说出口的restaurate》……）是<b>题材与结构的示例写法</b>，点开会带入作品表单作为创作底稿，请按自己的设定改写后再用。
+  </div>
+</section>
+
+<!-- 2 -->
+<section id="s2">
+  <div class="sec-head"><div class="sec-num">2</div><h2>工作台① AI_NovelGenerator</h2></div>
+  <p class="lead">主打长篇连载的「记忆库」路线：写 17 万字不崩人设、不失忆。</p>
+
+  <figure>
+    <img class="shot-band" src="04-novel-02.png" alt="AI_NovelGenerator工作台">
+    <figcaption><b>图 2</b>　AI_NovelGenerator 工作台头部：定位说明 + 四个专属能力按钮</figcaption>
+  </figure>
+
+  <div class="card">
+    <h3>官方定位</h3>
+    <p style="margin:0 0 12px;color:var(--txt2)">「长篇记忆库 → 写 17 万字不崩人设、不失忆」：设定工坊 → 生成世界观与人物档案 → 章节目录 → 逐章创作；角色状态表与伏笔账本自动追踪，章节篇幅自动更新前情；一致性审校检测剧情与人物矛盾。</p>
+  </div>
+
+  <div class="card">
+    <h3>四个专属按钮</h3>
+    <table>
+      <thead><tr><th style="width:170px">按钮</th><th>作用</th></tr></thead>
+      <tbody>
+        <tr><td><b>角色状态表</b></td><td>跟踪每个角色当前的状态（身份、关系、伤势、心理），避免人物前后不一</td></tr>
+        <tr><td><b>伏笔账本</b></td><td>登记埋下的伏笔与「已兑现」标记，防止长篇里伏笔烂尾或遗忘</td></tr>
+        <tr><td><b>一致性审校</b></td><td>检测剧情与人物矛盾，给出修订建议</td></tr>
+        <tr><td><b>新增章节</b></td><td>在章节目录上继续加章，接着往下写</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="tip ok">
+    <b>适合</b>：日更连载、几百章的长篇。作者最容易崩的就是「人设漂移」和「伏笔烂尾」，这个工作台的四个按钮正好是冲着这两件事去的。
+  </div>
+</section>
+
+<!-- 3 -->
+<section id="s3">
+  <div class="sec-head"><div class="sec-num">3</div><h2>工作台② Long-Novel-GPT</h2></div>
+  <p class="lead">层级流水线路线：创意 → 大纲 → 章节计划 → 正文逐层拆解重生成。</p>
+
+  <figure>
+    <img class="shot-band" src="04-novel-03.png" alt="Long-NovelGPT工作台">
+    <figcaption><b>图 3</b>　Long-Novel-GPT 工作台头部</figcaption>
+  </figure>
+
+  <div class="card">
+    <h3>官方定位</h3>
+    <p style="margin:0 0 12px;color:var(--txt2)">「创意 → 大纲 → 章节计划 → 正文 层级流水线，逐层重生成；每层可用用户意见重生成；支持文本地图与「拆书」—— 导入已有小说，拆出人物关系、节奏类型与段落分镜建议。」</p>
+  </div>
+
+  <div class="card">
+    <h3>四个专属按钮</h3>
+    <table>
+      <thead><tr><th style="width:170px">按钮</th><th>作用</th></tr></thead>
+      <tbody>
+        <tr><td><b>意见库生成</b></td><td>沉淀作者意见并批量作用于生成过程，让 AI 越写越贴你的口味</td></tr>
+        <tr><td><b>层级流水线</b></td><td>创意→大纲→章节计划→正文逐层推进，每层都能单独重生成</td></tr>
+        <tr><td><b>文本地图</b></td><td>把全书结构可视化，掌握节奏与信息分布</td></tr>
+        <tr><td><b>拆书改编</b></td><td>导入已有小说，拆出人物关系、节奏类型与段落分镜建议 —— <b>短剧化最实用的一步</b></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="tip warn">
+    <b>它和短剧的关系</b>：「拆书」能直接产出<b>段落分镜建议</b>，等于把网文直接改造成短剧分镜的素材。做短剧改编时，这一条比其它功能更值得先试。
+  </div>
+</section>
+
+<!-- 4 -->
+<section id="s4">
+  <div class="sec-head"><div class="sec-num">4</div><h2>工作台③ OpenWrite</h2></div>
+  <p class="lead">最严谨的一条：AI 只能提案，人工确认后才进入「正史」。</p>
+
+  <figure>
+    <img class="shot-band" src="04-novel-04.png" alt="OpenWrite工作台">
+    <figcaption><b>图 4</b>　OpenWrite 工作台头部</figcaption>
+  </figure>
+
+  <div class="card">
+    <h3>官方定位</h3>
+    <p style="margin:0 0 12px;color:var(--txt2)">「canon 正史分离 —— 人物/世界观/文案先提案，人工确认后才成为 AI 不可背离的真源；Goethe 规划 + Dante 执笔双模式；六域审查（剧情/人设/设定/节奏/伏笔/氛围）输出逐条修订建议。」</p>
+  </div>
+
+  <div class="card">
+    <h3>四个专属按钮</h3>
+    <table>
+      <thead><tr><th style="width:170px">按钮</th><th>作用</th></tr></thead>
+      <tbody>
+        <tr><td><b>canon 正史分离</b></td><td>AI 写出的设定先进入「提案区」，你点<b>确认入正史</b>后才成为全书不可背离的设定</td></tr>
+        <tr><td><b>Goethe/Dante 双 Agent</b></td><td>Goethe 负责规划（结构、大纲），Dante 负责执笔（正文），职责分离避免 AI 自说自话</td></tr>
+        <tr><td><b>提案强制</b></td><td>所有改动必须走提案流程，防止 AI 悄悄改设定</td></tr>
+        <tr><td><b>六域审查</b></td><td>剧情 / 人设 / 设定 / 节奏 / 伏笔 / 氛围 六个维度逐条给修订建议</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="tip ok">
+    <b>适合</b>：严肃题材、世界观复杂、需要多人协作审稿的团队。作者对设定有绝对控制权时，这套流程最稳。
+  </div>
+</section>
+
+<!-- 5 -->
+<section id="s5">
+  <div class="sec-head"><div class="sec-num">5</div><h2>工作台④ AI小说家</h2></div>
+  <p class="lead">题材模板 + 滑动窗口上下文 + 断点续写，最适合日更爆款套路文。</p>
+
+  <figure>
+    <img class="shot-band" src="04-novel-05.png" alt="AI小说家工作台">
+    <figcaption><b>图 5</b>　AI小说家 工作台头部</figcaption>
+  </figure>
+
+  <figure>
+    <img class="shot" src="04-novel-06.png" alt="AI小说家工作台全页">
+    <figcaption><b>图 6</b>　AI小说家工作台全页：新建作品表单 + 题材模板库</figcaption>
+  </figure>
+
+  <div class="card">
+    <h3>官方定位</h3>
+    <p style="margin:0 0 12px;color:var(--txt2)">「六种题材模板（网文文学/爽打剧情/复仇/爽剧/暴爽）+ 滑动窗口上下文（近 3 章全文 + 近期弧线压缩），第 50 章也能与第 5 章同梗；断点续传一键写完下一章，单独可独立重成。」</p>
+  </div>
+
+  <div class="card">
+    <h3>四个专属按钮</h3>
+    <table>
+      <thead><tr><th style="width:170px">按钮</th><th>作用</th></tr></thead>
+      <tbody>
+        <tr><td><b>6 种题材模板</b></td><td>按题材套用章节节奏模板（如「模板控制每章字数与文风基调」）</td></tr>
+        <tr><td><b>滑动窗口上下文</b></td><td>只带近 3 章全文 + 近期弧线压缩喂给模型，长篇也不超上下文</td></tr>
+        <tr><td><b>断点续传</b></td><td>一键写完下一章；也可「仅重生成本章」或「查看/重生成第 N 章」</td></tr>
+        <tr><td><b>单独可重生成</b></td><td>任意单章独立重写，不影响其它章节</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- 6 -->
+<section id="s6">
+  <div class="sec-head"><div class="sec-num">6</div><h2>四选一：怎么挑</h2></div>
+
+  <table>
+    <thead><tr><th style="width:180px">工作台</th><th>核心机制</th><th style="width:200px">最适合</th></tr></thead>
+    <tbody>
+      <tr><td><b>AI_NovelGenerator</b></td><td>长篇记忆库：角色状态表 + 伏笔账本 + 一致性审校</td><td>几百章日更连载</td></tr>
+      <tr><td><b>Long-Novel-GPT</b></td><td>层级流水线 + 拆书改编 + 文本地图</td><td>结构化创作、网文改短剧</td></tr>
+      <tr><td><b>OpenWrite</b></td><td>canon 正史分离 + 双 Agent + 六域审查</td><td>严谨设定、多人协作审稿</td></tr>
+      <tr><td><b>AI小说家</b></td><td>题材模板 + 滑动窗口 + 断点续写</td><td>套路爆款、日更不断更</td></tr>
+    </tbody>
+  </table>
+
+  <div class="tip">
+    <b>接到短剧线上</b>：小说PLUS 写完正文 → 右上角<b>导出 TXT</b> → 短剧导演台新建项目，把剧本粘贴进「原文与改写」→ 走「角色场景道具 → 分镜视频 → 成片合成」。若走改编路线，先用 Long-Novel-GPT 的「拆书改编」拿到段落分镜建议，再进导演台微调。
+  </div>
+</section>
+
+<!-- 7 -->
+<section id="s7">
+  <div class="sec-head"><div class="sec-num">7</div><h2>常见问题与检查清单</h2></div>
+
+  <div class="card">
+    <h3>常见问题</h3>
+    <table>
+      <thead><tr><th style="width:180px">现象</th><th>原因与处理</th></tr></thead>
+      <tbody>
+        <tr><td>生成没有反应 / 报模型错误</td><td>检查 <b>设置 → AI 服务</b> 里的文本服务是否已启用并有 API Key；再回小说PLUS 重试</td></tr>
+        <tr><td>长篇写到几十章后开始重复、像换个人</td><td>换用 AI_NovelGenerator 的角色状态表 + 伏笔账本，或 AI小说家的滑动窗口上下文</td></tr>
+        <tr><td>AI 擅自改了设定</td><td>OpenWrite 的 canon 正史分离：所有改动先提案，人工确认才入正史</td></tr>
+        <tr><td>不知道从哪写起</td><td>用「从教程模板选题（8 类 × 24 个）」挑一个底稿，再改写成自己的故事</td></tr>
+        <tr><td>正文怎么拿出来</td><td>页面右上角<b>导出 TXT</b>；改动后记得点<b>保存修改</b></td></tr>
+        <tr><td>想直接改成短剧</td><td>Long-Novel-GPT 的「拆书改编」可输出人物关系、节奏类型与<b>段落分镜建议</b>；再把正文贴进短剧导演台做分镜</td></tr>
+        <tr><td>换工作台会不会丢稿</td><td>四套工作台共用同一份作品列表，随时可切换；切换前记得<b>保存修改</b></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <h3>检查清单</h3>
+    <ul class="checklist">
+      <li>设置 → AI 服务中的文本服务已启用</li>
+      <li>小说PLUS 已选中目标工作台（地址栏 <code>?tab=</code>）</li>
+      <li>作品已创建并命名</li>
+      <li>已用教程模板选定题材方向（8 类 × 24 个）</li>
+      <li>长篇项目已开启角色状态表 / 伏笔账本（AI_NovelGenerator）</li>
+      <li>改编项目已跑过「拆书改编」并采纳分镜建议（Long-Novel-GPT）</li>
+      <li>严谨项目已用 canon 正史分离固定设定（OpenWrite）</li>
+      <li>日更项目已开启断点续传（AI小说家）</li>
+      <li>正文已点「保存修改」，并「导出 TXT」备份</li>
+      <li>小说文本已准备好，进入短剧导演台新建项目</li>
+    </ul>
+  </div>
+</section>
+
+<div class="foot">
+  咕嘎AI漫剧（Guga Studio）· 小说工作台图文教程　|　界面截图取自本机真实运行环境（深色模式）<br>
+  文档版本 v1.1　·　四大工作台功能仍在迭代，以软件实际显示为准
+</div>
+
+</div>
+</body>
+</html>

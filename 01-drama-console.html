@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>咕嘎AI漫剧 · 短剧导演台图文教程</title>
+<style>
+:root{
+  --bg:#0d0f13; --panel:#171c26; --panel2:#1e2531;
+  --line:#252d3b; --line2:#313b4d;
+  --txt:#e8edf5; --txt2:#9aa7ba; --txt3:#6b7889;
+  --accent:#ff8a1f; --accent2:#ffb257; --accent-bg:rgba(255,138,31,.14);
+  --ok:#3ecf8e; --ok-bg:rgba(62,207,142,.14);
+  --err:#ff6b6b; --err-bg:rgba(255,107,107,.14);
+  --blue:#4c9bff; --blue-bg:rgba(76,155,255,.14);
+  --radius:14px;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:
+    radial-gradient(1200px 700px at 12% -8%, rgba(255,138,31,.10), transparent 60%),
+    radial-gradient(900px 600px at 92% 4%, rgba(76,155,255,.08), transparent 55%),
+    var(--bg);
+  color:var(--txt);
+  font-family:"PingFang SC","Microsoft YaHei","Segoe UI",system-ui,sans-serif;
+  font-size:15px; line-height:1.85; -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px 100px}
+header.hero{
+  margin:0 -24px 0;padding:64px 24px 52px;
+  background:linear-gradient(180deg,rgba(255,138,31,.10),transparent 70%);
+  border-bottom:1px solid var(--line);
+}
+.hero-inner{max-width:1180px;margin:0 auto}
+.badge-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:18px}
+.badge{display:inline-flex;align-items:center;gap:6px;padding:5px 13px;border-radius:999px;
+  font-size:12.5px;letter-spacing:.4px;border:1px solid var(--line2);color:var(--txt2);background:var(--panel)}
+.badge.hot{color:var(--accent2);border-color:rgba(255,138,31,.45);background:var(--accent-bg)}
+.badge.ok{color:var(--ok);border-color:rgba(62,207,142,.4);background:var(--ok-bg)}
+.badge.blue{color:var(--blue);border-color:rgba(76,155,255,.4);background:var(--blue-bg)}
+h1{font-size:clamp(30px,4.4vw,46px);line-height:1.25;margin:0 0 14px;letter-spacing:-.5px}
+h1 .grad{background:linear-gradient(95deg,var(--accent),#ffd08a);-webkit-background-clip:text;background-clip:text;color:transparent}
+.sub{color:var(--txt2);font-size:16.5px;max-width:860px;margin:0 0 26px}
+.meta-row{display:flex;flex-wrap:wrap;gap:22px;color:var(--txt3);font-size:13.5px}
+.meta-row b{color:var(--txt2);font-weight:600}
+nav.toc{
+  background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+  padding:22px 26px;margin:34px 0 46px;display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:8px 26px;
+}
+nav.toc h4{margin:0 0 12px;font-size:13px;letter-spacing:1.5px;color:var(--txt3);text-transform:uppercase;grid-column:1/-1}
+nav.toc a{color:var(--txt2);text-decoration:none;font-size:14px;display:block;padding:5px 10px;border-radius:8px;border-left:2px solid transparent}
+nav.toc a:hover{color:var(--accent2);background:var(--accent-bg);border-left-color:var(--accent)}
+section{margin:0 0 60px;scroll-margin-top:20px}
+.sec-head{display:flex;align-items:center;gap:14px;margin:0 0 18px}
+.sec-num{flex:0 0 auto;width:40px;height:40px;border-radius:11px;display:grid;place-items:center;
+  background:var(--accent-bg);color:var(--accent2);font-weight:700;font-size:16px;border:1px solid rgba(255,138,31,.35)}
+h2{font-size:25px;margin:0;letter-spacing:-.2px}
+.lead{color:var(--txt2);margin:0 0 26px;padding-left:54px;font-size:15px}
+@media(max-width:640px){.lead{padding-left:0}}
+figure{margin:0 0 22px}
+.shot{display:block;width:100%;border:1px solid var(--line2);border-radius:var(--radius);
+  box-shadow:0 18px 48px rgba(0,0,0,.55);background:var(--panel);transition:.22s}
+.shot:hover{border-color:rgba(255,138,31,.55);transform:translateY(-2px)}
+.shot-sm{width:100%;max-width:620px;margin:0 auto}
+.shot-narrow{width:100%;max-width:360px;margin:0 auto}
+figcaption{margin-top:12px;color:var(--txt3);font-size:13.5px;text-align:center}
+figcaption b{color:var(--txt2)}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:22px 24px;margin:0 0 22px}
+.card h3{margin:0 0 12px;font-size:18px}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:16px}
+.tip{border-left:3px solid var(--blue);background:var(--blue-bg);padding:16px 20px;border-radius:0 10px 10px 0;margin:0 0 20px;color:var(--txt)}
+.tip.warn{border-left-color:var(--accent);background:var(--accent-bg)}
+.tip.err{border-left-color:var(--err);background:var(--err-bg)}
+.tip.ok{border-left-color:var(--ok);background:var(--ok-bg)}
+.tip b{color:#fff}
+ul,ol{padding-left:22px;margin:0 0 16px}
+li{margin:7px 0}
+li::marker{color:var(--accent)}
+table{width:100%;border-collapse:collapse;margin:0 0 22px;font-size:14px;background:var(--panel);border-radius:12px;overflow:hidden}
+th,td{padding:12px 14px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:var(--panel2);color:var(--txt2);font-weight:600;font-size:13.5px}
+tr:last-child td{border-bottom:none}
+td code,kbd,code{background:#0b0e13;border:1px solid var(--line2);border-radius:6px;padding:1px 7px;font-size:13px;color:var(--accent2);
+  font-family:"Cascadia Code",Consolas,monospace}
+.num-list{counter-reset:st}
+.num-list>li{position:relative;padding-left:36px;margin:12px 0}
+.num-list>li::before{counter-increment:st;content:counter(st);position:absolute;left:0;top:4px;width:24px;height:24px;border-radius:8px;
+  background:var(--accent-bg);color:var(--accent2);font-size:12.5px;display:grid;place-items:center;font-weight:700}
+.flow{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 22px;counter-reset:f}
+.flow div{flex:1 1 200px;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 18px;position:relative}
+.flow div::before{counter-increment:f;content:counter(f);display:inline-grid;place-items:center;width:26px;height:26px;border-radius:9px;
+  background:var(--accent);color:#1a1206;font-weight:800;font-size:14px;margin-right:10px}
+.flow b{display:block;margin-bottom:4px}
+.flow span{color:var(--txt2);font-size:13.5px}
+.checklist{list-style:none;padding:0}
+.checklist li{padding-left:34px;position:relative;margin:11px 0}
+.checklist li::before{content:"✓";position:absolute;left:0;top:0;width:22px;height:22px;border-radius:7px;
+  background:var(--ok-bg);color:var(--ok);font-size:13px;display:grid;place-items:center;font-weight:700}
+.foot{margin-top:70px;padding-top:26px;border-top:1px solid var(--line);color:var(--txt3);font-size:13px;text-align:center}
+@media(max-width:640px){.field-list li{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div class="badge-row">
+      <span class="badge hot">● 咕嘎AI漫剧 · Guga Studio</span>
+      <span class="badge">图文教程</span>
+      <span class="badge ok">深色界面</span>
+      <span class="badge blue">顶部导航 → 短剧导演台</span>
+    </div>
+    <h1>短剧导演台<span class="grad">图文教学</span></h1>
+    <p class="sub">
+      从一个灵感到一部短剧，咕嘎全流程为你代工。本教程完整覆盖短剧导演台的三层结构：
+      <b>项目库 → 项目详情（剧集 + 素材库）→ 单集工作台（四步流水线）</b>，
+      并讲清每一步点什么、怎么改、出片后如何下载。所有界面图均取自软件真实运行界面（2560×1400 宽屏、深色模式）。
+    </p>
+    <div class="meta-row">
+      <span>适用版本：<b>咕嘎AI漫剧（Guga Studio）V3</b></span>
+      <span>入口：<b>顶部导航 → 短剧导演台</b></span>
+      <span>阅读时长：<b>约 12 分钟</b></span>
+      <span>难度：<b>零基础可跟做</b></span>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+<nav class="toc">
+  <h4>目录</h4>
+  <a href="#s0">0 · 导演台全景与三步路线</a>
+  <a href="#s1">1 · 项目库：卡片、搜索、筛选、排序</a>
+  <a href="#s2">2 · 新建项目：名称 / 风格 / 比例</a>
+  <a href="#s3">3 · 继续制作与卡片快捷菜单</a>
+  <a href="#s4">4 · 项目详情页：剧集列表</a>
+  <a href="#s5">5 · 创建新集与分辨率锁定</a>
+  <a href="#s6">6 · 项目素材库：角色/场景/道具</a>
+  <a href="#s7">7 · 单集工作台：顶部参数条</a>
+  <a href="#s8">8 · 步骤 1 原文与改写</a>
+  <a href="#s9">9 · 步骤 2 角色·场景·道具</a>
+  <a href="#s10">10 · 步骤 3 分镜视频</a>
+  <a href="#s11">11 · 步骤 4 成片合成与下载</a>
+  <a href="#s12">12 · 常见问题与提效技巧</a>
+  <a href="#s13">13 · 出片检查清单</a>
+</nav>
+
+<!-- 0 -->
+<section id="s0">
+  <div class="sec-head"><div class="sec-num">0</div><h2>导演台全景与三步路线</h2></div>
+  <p class="lead">短剧导演台不是一个页面，而是一条流水线。搞清楚这三个层级，后面所有操作都好理解。</p>
+
+  <figure>
+    <img class="shot" src="01-drama-01.png" alt="短剧导演台项目库">
+    <figcaption><b>图 1</b>　短剧导演台首页：顶部统计、搜索与筛选、项目卡片区</figcaption>
+  </figure>
+
+  <div class="flow">
+    <div><b>项目库</b><span>新建项目、封面管理、搜索与状态筛选</span></div>
+    <div><b>项目详情</b><span>剧集列表 + 项目素材库（角色/场景/道具）</span></div>
+    <div><b>单集工作台</b><span>原文改写 → 资产制作 → 分镜视频 → 成片合成</span></div>
+  </div>
+
+  <div class="card">
+    <h3>三步上手路线</h3>
+    <ol class="num-list" style="margin-bottom:0">
+      <li>在 <b>设置 → AI 服务</b> 里配好文本 / 图片 / 视频能力（这一步没配，导演台会用不了）。</li>
+      <li>回到导演台 <b>新建项目</b>，定好名称、视觉风格与画面比例。</li>
+      <li>进入项目 → <b>添加集</b> → 进入单集工作台，按左侧 <b>四步流程</b> 从上往下走，最后下载成片。</li>
+    </ol>
+  </div>
+
+  <div class="tip warn">
+    <b>两个必须提前知道的“锁定”规则：</b>
+    <ul style="margin:8px 0 0">
+      <li><b>项目创建时</b>：画面比例一旦定下不可改，视频生成会统一用该比例。</li>
+      <li><b>单集创建时</b>：会自动锁定当前启用的图片与视频生成能力，之后改设置不影响已建的集。</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 1 -->
+<section id="s1">
+  <div class="sec-head"><div class="sec-num">1</div><h2>项目库：卡片、搜索、筛选、排序</h2></div>
+  <p class="lead">导演台首页就是你的项目货架。所有短剧项目以海报卡片排列，右上角实时显示项目总数、进行中数量与视觉风格数量。</p>
+
+  <figure>
+    <img class="shot" src="01-drama-03.png" alt="项目库卡片区">
+    <figcaption><b>图 2</b>　项目卡片：左上角画幅比例角标（如 9:16）、状态徽章（待开始 / 进行中 / 已完成）、底部标题与集数·角色数</figcaption>
+  </figure>
+
+  <div class="card">
+    <h3>工具条逐项说明</h3>
+    <table>
+      <thead><tr><th style="width:150px">控件</th><th>作用</th><th style="width:180px">使用建议</th></tr></thead>
+      <tbody>
+        <tr><td><b>搜索项目</b></td><td>按项目名称即时过滤</td><td>项目多时先搜再操作</td></tr>
+        <tr><td><b>全部 / 待开始 / 进行中 / 已完成</b></td><td>按状态筛选卡片</td><td>赶稿时用「进行中」定位</td></tr>
+        <tr><td><b>排序：最近更新 / 标题</b></td><td>调整卡片顺序</td><td>多项目并行时选「最近更新」</td></tr>
+        <tr><td><b>＋ 新建项目</b>（右上角橙色按钮）</td><td>弹出新建项目面板</td><td>见第 2 节</td></tr>
+        <tr><td>卡片左上角 <b>9:16</b> 角标</td><td>该项目锁定的画幅比例</td><td>横屏短剧选 16:9</td></tr>
+        <tr><td>卡片左上角状态徽章</td><td>待开始 / 进行中 / 已完成</td><td>可点它筛选对应状态</td></tr>
+        <tr><td>卡片右下角「设置封面」</td><td>给项目上传或更换封面图</td><td>封面用于秀场展示</td></tr>
+        <tr><td>末尾的 <b>＋ 新建项目</b> 虚线卡</td><td>网格末尾的快捷创建入口</td><td>与右上角按钮等价</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- 2 -->
+<section id="s2">
+  <div class="sec-head"><div class="sec-num">2</div><h2>新建项目：名称 / 风格 / 比例</h2></div>
+  <p class="lead">点右上角「＋ 新建项目」，只需三步就能把一个项目立起来。</p>
+
+  <figure>
+    <img class="shot shot-sm" src="01-drama-02.png" alt="新建项目弹窗">
+    <figcaption><b>图 3</b>　「新建项目」面板：项目名称（必填）、视觉风格、画面比例</figcaption>
+  </figure>
+
+  <ol class="num-list">
+    <li><b>项目名称 *</b>：示例占位符是「例如：第 1 集 · 逃出大英博物馆」，建议写成「集名 + 核心事件」，方便日后检索。</li>
+    <li><b>视觉风格</b>：下拉选择（如「写实」），提示语写着「照片级电影感写实，真人剧质感」——<b>它决定全片的画面基调</b>，与设置里的「视频画风」配合使用。</li>
+    <li><b>画面比例</b>：16:9 横屏 / 9:16 竖屏 / 1:1 方形 / 自适应。下方红字提示：<b>创建后固定，视频生成将统一使用该比例</b>。</li>
+    <li>点 <b>＋ 创建项目</b>，直接进入导演台项目详情页。</li>
+  </ol>
+
+  <div class="tip err">
+    <b>最容易踩的坑：</b>比例建完不能改。短剧投放抖音 / 快手 / 视频号一律选 <b>9:16 竖屏</b>；横屏平台（B 站、长视频）选 <b>16:9</b>。先想清楚再点创建。
+  </div>
+</section>
+
+<!-- 3 -->
+<section id="s3">
+  <div class="sec-head"><div class="sec-num">3</div><h2>继续制作与卡片快捷菜单</h2></div>
+  <p class="lead">关掉软件后再回来，导演台会记住你上次做到哪儿。</p>
+
+  <figure>
+    <img class="shot shot-sm" src="01-drama-04.png" alt="继续制作横幅">
+    <figcaption><b>图 4</b>　「继续制作」横幅：显示最近编辑的项目、上次编辑时间、集数与角色数</figcaption>
+  </figure>
+
+  <div class="tip ok">
+    <b>继续制作</b>：横幅会显示「上次编辑 X 前 · N 集 · M 角色」，点右侧「继续制作 →」直接跳回那一集的工作台，是最常用的返回入口。
+  </div>
+
+  <div class="card">
+    <h3>卡片右上角「⋯」快捷菜单</h3>
+    <table>
+      <thead><tr><th style="width:150px">菜单项</th><th>说明</th></tr></thead>
+      <tbody>
+        <tr><td><b>打开项目</b></td><td>进入项目详情页</td></tr>
+        <tr><td><b>设置封面</b></td><td>上传或清除项目封面</td></tr>
+        <tr><td><b>重命名</b></td><td>修改项目名称</td></tr>
+        <tr><td><b>加入系列</b></td><td>把本项目挂到某个剧集系列下（可标季）</td></tr>
+        <tr><td><b>删除项目</b></td><td>危险操作，会二次确认，慎用</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- 4 -->
+<section id="s4">
+  <div class="sec-head"><div class="sec-num">4</div><h2>项目详情页：剧集列表</h2></div>
+  <p class="lead">打开项目后，顶部是项目信息条，下面分「剧集列表」与「素材库」两个标签。</p>
+
+  <figure>
+    <img class="shot" src="01-drama-05.png" alt="项目详情页">
+    <figcaption><b>图 5</b>　项目详情页：顶部项目信息条 + 剧集列表 + 右上「＋ 添加集」</figcaption>
+  </figure>
+
+  <figure>
+    <img class="shot" src="01-drama-06.png" alt="剧集列表卡片">
+    <figcaption><b>图 5-2</b>　剧集卡片区：集号、状态、分镜进度与「进入制作 →」</figcaption>
+  </figure>
+
+  <div class="grid2">
+    <div class="card">
+      <h3>顶部项目信息条</h3>
+      <ul style="margin:0">
+        <li><b>项目封面 + 标题 + 第 N 季</b>：季数来自系列设置</li>
+        <li><b>集数</b>：该项目已建了多少集</li>
+        <li><b>角色 / 场景</b>：资产数量统计</li>
+        <li><b>风格标识</b>：如 <code>realistic</code>，即建项目时选的视觉风格</li>
+        <li>左上角 <b>←</b> 返回项目库</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>剧集卡片</h3>
+      <ul style="margin:0">
+        <li>集号 <b>01 / 02</b> 与集标题</li>
+        <li>进度标记：<b>已完成 / 待开始</b></li>
+        <li>中间显示分镜数量与已录入条目数</li>
+        <li>右下角 <b>进入制作 →</b> 打开该集工作台</li>
+        <li>右下角图标：删除该集</li>
+        <li>网格末尾虚线卡：<b>添加第 3 集</b></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 5 -->
+<section id="s5">
+  <div class="sec-head"><div class="sec-num">5</div><h2>创建新集与分辨率锁定</h2></div>
+  <p class="lead">点右上角「＋ 添加集」或网格末尾的「添加第 N 集」，弹出创建新集面板。</p>
+
+  <figure>
+    <img class="shot shot-sm" src="01-drama-08.png" alt="创建新集弹窗">
+    <figcaption><b>图 6</b>　「创建新集」面板：标题（可留空）、视频分辨率</figcaption>
+  </figure>
+
+  <ul class="field-list">
+    <li><b>标题</b><span>留空时<b>自动按集数命名</b>，例如「第 3 集」。想自己命名就手填。</span></li>
+    <li><b>视频分辨率</b><span>下拉可选不同档位，如 <code>1.0 · 1376×768 · 16G显存</code>。数字越高越清晰，<b>显存要求也越高</b>；本地 ComfyUI 显存不足时选低一档。</span></li>
+    <li><b>底部提示</b><span>「创建后会自动锁定当前启用的图片与视频生成能力。」——<b>建集前先去设置页确认 AI 服务已配好</b>。</span></li>
+  </ul>
+
+  <div class="tip warn">
+    <b>建议</b>：创建新集前先回「设置 → AI 服务」看一眼文本 / 图片 / 视频三类默认模型是否是你想要的（尤其是默认模型带 ⭐ 的那条）。建集后就锁定了，改设置不会影响已建的集。
+  </div>
+</section>
+
+<!-- 6 -->
+<section id="s6">
+  <div class="sec-head"><div class="sec-num">6</div><h2>项目素材库：角色 / 场景 / 道具</h2></div>
+  <p class="lead">「素材库」标签里，项目级的角色、场景、道具统一管理，是全片一致性的关键。</p>
+
+  <figure>
+    <img class="shot" src="01-drama-07.png" alt="项目素材库">
+    <figcaption><b>图 7</b>　项目素材库：按「角色 / 场景 / 道具」分组，每张卡片带标签与「上传 / 重绘」按钮</figcaption>
+  </figure>
+
+  <div class="card">
+    <h3>每个素材卡片上的信息与操作</h3>
+    <table>
+      <thead><tr><th style="width:130px">元素</th><th>说明</th></tr></thead>
+      <tbody>
+        <tr><td>绿色 <b>已生成</b> 角标</td><td>该资产已有可用图片</td></tr>
+        <tr><td>名称 + 定位标签</td><td>如「猫咪 · 主角」「练功房 · 午后 · 室内」「小礼帽 · 装饰」</td></tr>
+        <tr><td>英文描述</td><td>Agent 提取的外观提示词（画风、色彩、光线…），决定重绘时的效果</td></tr>
+        <tr><td><b>上传</b></td><td>用你自己的图替换 Agent 生成图</td></tr>
+        <tr><td><b>重绘</b></td><td>按当前图片模型重新生成一张</td></tr>
+        <tr><td>分组标题右侧数字</td><td>该组资产数量</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="tip">
+    <b>用法：</b>角色图、场景图、道具图会被系统自动带入分镜的「参考素材」，保证同一角色在每个镜头里长得一样。角色定妆后建议<b>上传一张你满意的定妆照</b>，后续镜头都会以它为参考。
+  </div>
+</section>
+
+<!-- 7 -->
+<section id="s7">
+  <div class="sec-head"><div class="sec-num">7</div><h2>单集工作台：顶部参数条与四步流程</h2></div>
+  <p class="lead">点剧集卡片的「进入制作 →」，进入单集工作台。左边是四步流水线，右上角是全局参数。</p>
+
+  <figure>
+    <img class="shot shot-narrow" src="01-drama-09.png" alt="单集工作台四步流程">
+    <figcaption><b>图 8</b>　左侧步骤栏：完成度圆环 + 剧本 / 资产制作 / 视频制作 / 导出 四步</figcaption>
+  </figure>
+
+  <figure>
+    <img class="shot" src="01-drama-10.png" alt="顶部参数条">
+    <figcaption><b>图 9</b>　顶部参数条：文本 / 图片 / 视频模型、分辨率、步数与预览模式</figcaption>
+  </figure>
+
+  <div class="card">
+    <h3>顶部参数逐项说明</h3>
+    <table>
+      <thead><tr><th style="width:120px">参数</th><th>示例值</th><th>说明</th></tr></thead>
+      <tbody>
+        <tr><td><b>文本</b></td><td><code>默认 · gemini-3-flash-preview</code></td><td>剧本改写、分镜拆解用的文本模型，来自设置页文本服务</td></tr>
+        <tr><td><b>图片</b></td><td><code>默认 · z_image_turbo</code></td><td>角色图 / 场景图 / 分镜图模型</td></tr>
+        <tr><td><b>视频</b></td><td><code>默认 · minimax_h3</code></td><td>镜头视频生成模型</td></tr>
+        <tr><td><b>分辨率</b></td><td><code>0.4 · 864×480 · 12G显存</code></td><td>数值越大越清晰、显存占用越高</td></tr>
+        <tr><td><b>步数</b></td><td><code>4 步 · 极速预览</code></td><td>4 步出草稿快；改高步数画质更好但更慢</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="tip ok">
+    <b>三步必须按顺序来：</b>剧本 → 资产制作 → 视频制作 → 导出。每一步完成后，左侧对应条目会亮起绿色对勾并显示「已完成」，未做的步骤显示「待开始」。
+  </div>
+</section>
+
+<!-- 8 -->
+<section id="s8">
+  <div class="sec-head"><div class="sec-num">8</div><h2>步骤 1 · 原文与改写</h2></div>
+  <p class="lead">把小说/大纲原文变成可拍的短剧剧本。左侧显示「原文与改写 2/2」进度。</p>
+
+  <figure>
+    <img class="shot" src="01-drama-11.png" alt="步骤1 原文与改写">
+    <figcaption><b>图 10</b>　原文与改写：右侧为 AI 改写稿，左上角显示字数，可「跳过改写」或「重新改写」</figcaption>
+  </figure>
+
+  <ul class="num-list">
+    <li>把小说原文粘贴进 <b>原文</b> 区（或由小说PLUS 导入）。</li>
+    <li>点 <b>改写</b>，AI 按短剧节奏重写：压缩叙事、强化冲突、保留钩子。</li>
+    <li>结果不满意点 <b>重新改写</b>；想保留自己的原文，点 <b>跳过改写</b> 直接进入下一步。</li>
+    <li>右上角可切换使用的文本模型，不同模型风格差异明显。</li>
+  </ul>
+</section>
+
+<!-- 9 -->
+<section id="s9">
+  <div class="sec-head"><div class="sec-num">9</div><h2>步骤 2 · 角色·场景·道具</h2></div>
+  <p class="lead">AI 从剧本里抽出角色、场景、道具，并自动生成参考图（图中显示 3/3 已完成）。</p>
+
+  <figure>
+    <img class="shot" src="01-drama-12.png" alt="步骤2 角色场景道具">
+    <figcaption><b>图 11</b>　资产制作：顶部「重绘角色 / 重绘场景 / 重绘道具 / 批量角色 / 批量场景 / 批量道具」一键批量生成</figcaption>
+  </figure>
+
+  <ul class="num-list">
+    <li>点 <b>重绘角色 / 重绘场景 / 重绘道具</b>（或对应的<b>批量</b>按钮）生成参考图。</li>
+    <li>每张卡片不满意就点 <b>重绘</b>，或用 <b>上传</b> 换成自己的定妆照。</li>
+    <li>右上角可切到<b>场景</b>、<b>道具</b>分组分别处理。</li>
+    <li>全部确认后，这一步自动打勾，进入分镜环节。</li>
+  </ul>
+  <div class="tip">
+    <b>提效：</b>角色脸是全片一致性的关键。生成后先给主要角色手动上传一张定妆照，再点分镜步骤，比反复重绘省时间得多。
+  </div>
+</section>
+
+<!-- 10 -->
+<section id="s10">
+  <div class="sec-head"><div class="sec-num">10</div><h2>步骤 3 · 分镜视频</h2></div>
+  <p class="lead">整部短剧的核心环节：拆镜 → 写分镜 → 选参考素材 → 生成镜头视频。</p>
+
+  <figure>
+    <img class="shot" src="01-drama-13.png" alt="步骤3 分镜视频">
+    <figcaption><b>图 12</b>　分镜视频工作区：左列分镜任务列表、中列分镜描述与视觉提示词、右列参考素材与生成按钮</figcaption>
+  </figure>
+
+  <div class="card">
+    <h3>五个区域怎么用</h3>
+    <table>
+      <thead><tr><th style="width:150px">区域</th><th>内容</th><th style="width:170px">操作要点</th></tr></thead>
+      <tbody>
+        <tr><td><b>分镜任务列表</b>（最左）</td><td>每一镜的缩略图、状态（生成中 / 已完成 / 失败）、耗时</td><td>点某镜切到右侧编辑</td></tr>
+        <tr><td><b>分镜描述</b></td><td>画面描述 + 台词 + 运镜（特写/中景/近景/远景/室内等）</td><td>AI 生成后可手动改字</td></tr>
+        <tr><td><b>氛围</b></td><td>光线、色彩、情绪基调</td><td>决定成片调性</td></tr>
+        <tr><td><b>视觉提示词</b></td><td>英文 prompt，每行一个 @ 角色/@场景/@道具 引用</td><td>点「重新生成」可换一版</td></tr>
+        <tr><td><b>参考素材</b></td><td>这一镜要用的角色 / 场景 / 道具缩略图</td><td>点缩略图即可增删引用</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <ol class="num-list">
+    <li>点右上 <b>重新拆分</b> 可让 AI 重新拆镜；<b>批量补提示词</b> 一次性为所有分镜补齐 prompt。</li>
+    <li>在右侧检查视觉提示词，必要时手改或点「重新生成」。</li>
+    <li>右下角设置 <b>分镜时长</b>（秒），并会显示该镜使用的模型与分辨率。</li>
+    <li>点橙色 <b>生成</b>，镜头视频进入左侧任务队列；失败可单独重试，不影响其它镜头。</li>
+  </ol>
+
+  <div class="tip warn">
+    <b>显存与步数：</b>顶部的「分辨率」与「步数」直接决定速度与画质。草稿阶段用低分辨率 + 4 步极速预览，确认镜头没问题后再切高画质重生成，是最省时间的做法。
+  </div>
+</section>
+
+<!-- 11 -->
+<section id="s11">
+  <div class="sec-head"><div class="sec-num">11</div><h2>步骤 4 · 成片合成与下载</h2></div>
+  <p class="lead">所有镜头就位后，在这里挑片、合成、下载成片。</p>
+
+  <figure>
+    <img class="shot" src="01-drama-14.png" alt="步骤4 成片合成与下载">
+    <figcaption><b>图 13</b>　成片合成：上方「成片列表」可下载单个镜头，下方「镜头条目」可勾选后「拼接所选」</figcaption>
+  </figure>
+
+  <ul class="num-list">
+    <li><b>成片列表</b>：每个已完成镜头的成片缩略图，下方显示时长；点「下载」单独拿走这一镜。</li>
+    <li><b>镜头条目</b>：一镜一条，显示镜头号、描述与时长；左侧勾选框决定是否参与拼接。</li>
+    <li>点 <b>清空选择</b> 重置勾选，点橙色 <b>拼接所选 (N)</b> 把勾选的镜头合成一条视频。</li>
+    <li>顶部绿色 <b>✓ 已完成</b> 表示本集流程全部完成；右上「刷新」可同步最新任务状态。</li>
+  </ul>
+
+  <div class="tip err">
+    <b>看到「拼接失败」怎么办？</b>通常是被选中的镜头里有失败的空镜（成片列表中显示为红色「拼接失败」的占位）。回到步骤 3 把该镜重新生成成功，再回到这里重新拼接。
+  </div>
+</section>
+
+<!-- 12 -->
+<section id="s12">
+  <div class="sec-head"><div class="sec-num">12</div><h2>常见问题与提效技巧</h2></div>
+
+  <div class="card">
+    <h3>常见问题</h3>
+    <table>
+      <thead><tr><th style="width:170px">现象</th><th>原因与处理</th></tr></thead>
+      <tbody>
+        <tr><td>生成一直失败 / 提示显存不足</td><td>顶部把<b>分辨率</b>降一档（如 0.4 · 864×480），<b>步数</b>保持 4；本地 ComfyUI 建议 8G 以上显存，11G 以上更稳</td></tr>
+        <tr><td>画面比例不对</td><td>比例在<b>建项目时</b>已固定，改不了，只能新建项目</td></tr>
+        <tr><td>换模型后成片没变化</td><td>该集在建集时已锁定图片/视频能力，需<b>新建一集</b>才会用上新模型</td></tr>
+        <tr><td>角色每个镜头长得不一样</td><td>在素材库给主角<b>上传定妆照</b>，并确保分镜的「参考素材」里勾选了该角色</td></tr>
+        <tr><td>成片拼接失败</td><td>有镜头生成失败，先回步骤 3 重生成该镜</td></tr>
+        <tr><td>页面卡住、状态不同步</td><td>左下角点「<b>刷新数据</b>」，任务面板里也可查看排队任务</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <h3>提效技巧</h3>
+    <ul style="margin:0">
+      <li><b>草稿用低分辨率，交付再提清晰度</b>：先 4 步极速预览跑通全片，确认节奏后再切高画质重生成镜头。</li>
+      <li><b>批量按钮优先</b>：「批量角色 / 批量场景 / 批量道具」「批量补提示词」能省掉大量重复点击。</li>
+      <li><b>用「继续制作」回到现场</b>：关掉软件也不怕，横幅直达上次那一集。</li>
+      <li><b>左侧步骤栏当进度看板</b>：绿勾 = 已完成，数字 = 进度（如 3/3、1/3），一眼看出卡在哪。</li>
+      <li><b>模型随时可切</b>：顶部「文本 / 图片 / 视频」下拉即时生效，无需回设置页。</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 13 -->
+<section id="s13">
+  <div class="sec-head"><div class="sec-num">13</div><h2>出片检查清单</h2></div>
+  <p class="lead">照着勾一遍，确认这一集可以交付。</p>
+
+  <ul class="checklist">
+    <li>项目：名称、视觉风格、画面比例（9:16 / 16:9）已按投放平台选定。</li>
+    <li>项目封面已上传，秀场展示正常。</li>
+    <li>设置 → AI 服务中，文本 / 图片 / 视频三类默认模型（带 ⭐）已确认。</li>
+    <li>步骤 1：原文改写稿已定稿，或已确认跳过改写。</li>
+    <li>步骤 2：主要角色已上传定妆照；场景、道具参考图齐全（3/3）。</li>
+    <li>步骤 3：分镜数量与剧本节奏匹配；每个分镜的描述、氛围、视觉提示词都核对过。</li>
+    <li>步骤 3：所有镜头状态为「已完成」，没有红色「拼接失败」占位。</li>
+    <li>步骤 3：分镜时长设置合理，单镜 3–8 秒为主。</li>
+    <li>步骤 4：勾选需要合成的镜头，点「拼接所选」，成片成功生成。</li>
+    <li>成片已下载到本地，文件可正常播放。</li>
+    <li>项目状态更新为「已完成」，方便下次在项目库里筛选。</li>
+  </ul>
+
+  <div class="tip">
+    <b>下一站：</b>成片可以到顶部导航的 <b>秀场</b> 展示，或在 <b>常用工具 / Skill 库</b> 里做二次加工；多集项目可在「素材库 → 系列」里归到同一季统一管理。
+  </div>
+</section>
+
+<div class="foot">
+  咕嘎AI漫剧（Guga Studio）· 短剧导演台图文教程　|　界面截图取自本机真实运行环境（深色模式）<br>
+  文档版本 v1.0　·　如界面有更新，以软件实际显示为准
+</div>
+
+</div>
+</body>
+</html>
